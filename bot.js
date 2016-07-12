@@ -79,7 +79,7 @@ function respond() {
     if(request.text && botRegexDad.test(request.text)){
       console.log("don't care");
       this.res.writeHead(200);
-      this.res.end();
+      // this.res.end();
     } else {
       this.res.writeHead(200);
       postMessage(joke, false);
