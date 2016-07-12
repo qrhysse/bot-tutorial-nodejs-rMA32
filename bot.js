@@ -50,6 +50,7 @@ function respond() {
 
   // Thbby update REGEX-FREE
   else if( request.text && ((String(request.text).slice(-1)) == '?') && request.name !== "Dr. Q" ) {
+    console.log(request);
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/jehu3g8gr/thbby.jpg", false);
     this.res.end();
