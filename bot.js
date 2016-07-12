@@ -96,13 +96,13 @@ function respond() {
   if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
     this.res.writeHead(200);
     postMessage("I'm not your fucking Dad.", false);
-    this.res.end();
+    //this.res.end();
   }
 
   if( request.text && botRegexSandwich.test(request.text)) {
     this.res.writeHead(200);
     postMessage("can i get a bbq huge pls tyty", false);
-    this.res.end();
+    //this.res.end();
   }
 
   if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
@@ -110,6 +110,7 @@ function respond() {
     postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
     this.res.end();
   }
+  this.res.end();
 }
 
 function postMessage(response, isLink) {
