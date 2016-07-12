@@ -66,7 +66,7 @@ function respond() {
     //var joke = "Hi " + botRegexDadJoke($2) + ", I'm dad.";
 
     var content = request.text;
-    var jokeVariable = content.replace(/.*?i'?m/i, "" );
+    var jokeVariable = content.replace(/.*?i'?m\b/i, "" );
     var joke = "Hi" + jokeVariable + ", I'm Dad.";
     // var contentLowercase = content.toLowerCase();
     // var contentArray = content.split(' ');
