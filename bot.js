@@ -60,7 +60,7 @@ function respond() {
     this.res.end();
   }
 
-  else if( request.text && botRegexSandwich.text(request.text)) {
+  else if( request.text && botRegexSandwich.test(request.text)) {
     this.res.writeHead(200);
     postMessage("can i get a bbq huge pls tyty", false);
     this.res.end();
