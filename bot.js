@@ -11,6 +11,7 @@ function respond() {
   var botRegexDad = /(^dad$|\sdad)/i;
   var botRegexRip = /(^rip$|\srip)/i;
   var botRegexAlex = /(^actually$|\sactually)/i;
+  var botRegexSandwich = /(^sandwich$|\ssandwich)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /.*?(i'm|im)\b/i;
       
@@ -56,6 +57,12 @@ function respond() {
   else if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
     this.res.writeHead(200);
     postMessage("I'm not your fucking Dad.", false);
+    this.res.end();
+  }
+
+  else if( request.text && botRegexSandwich.text(request.text)) {
+    this.res.writeHead(200);
+    postMessage("can i get a bbq huge pls tyty", false);
     this.res.end();
   }
 
