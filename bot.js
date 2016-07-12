@@ -22,8 +22,9 @@ function respond() {
     this.res.writeHead(200);
     postMessage(cool(), false);
     this.res.end();
-  } 
-  else if(request.text && botRegexBio.test(request.text)) {
+  }
+  
+  if(request.text && botRegexBio.test(request.text)) {
     var link = request.text;
     link = link.replace(/from a biological (perspective|standpoint),?/i, "")
     link = link.replace(/ /g, "+");
@@ -32,39 +33,22 @@ function respond() {
     this.res.writeHead(200);
     postMessage("https://www.google.com/#safe=off&q="+link, true);
     this.res.end();
-  //   var req = String(request.text);
-  //   var helpVariable = req.split(/from a biological perspective,?/i);
-  //   var help = helpVariable[jokeVariable.length-1];
-  //   var linkHelp = help.replace(" ", "+");
-  //   linkHelp = linkHelp.replace(",", "%2C");
-  //   linkHelp = linkHelp.replace("'", "%27m");
-  //   console.log("Help activated.");
-  //   console.log(linkHelp);
-  //   this.res.writeHead(200);
-  //   postMessage("http://google.com/#safe=off&q="+linkHelp);
-  //   this.res.end();
   } 
   
-  else if(request.text && botRegexWee.test(request.text)) {
+  if(request.text && botRegexWee.test(request.text)) {
     this.res.writeHead(200);
     postMessage("Goddamn Weeaboo", false);
     this.res.end();
   }
 
-  // Thbby update REGEX-FREE lol
-  else if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
+  if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
     console.log("Thbby activated.");
     this.res.writeHead(200);
     postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
     this.res.end();
   }
 
-  else if(request.text && botRegexDadJoke.test(request.text) && request.name !== "Dr. Q") {
-    //var req = request.text;
-    //var repl = req.replace(botRegexDadJoke, "Hi");
-    //var joke = repl + ", I'm Dad.";
-    //var joke = "Hi " + botRegexDadJoke($2) + ", I'm dad.";
-
+  if(request.text && botRegexDadJoke.test(request.text) && request.name !== "Dr. Q") {
     var content = request.text;
     var jokeVariable = content.replace(/.*?\bi'?m\b/i, "" );
     var joke = "Hi" + jokeVariable + ", I'm Dad.";
@@ -103,33 +87,27 @@ function respond() {
     }
   }
 
-  else if( request.text && botRegexAlex.test(request.text)) {
+  if( request.text && botRegexAlex.test(request.text)) {
     this.res.writeHead(200);
     postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
     this.res.end();
   }
   
-  else if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
+  if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
     this.res.writeHead(200);
     postMessage("I'm not your fucking Dad.", false);
     this.res.end();
   }
 
-  else if( request.text && botRegexSandwich.test(request.text)) {
+  if( request.text && botRegexSandwich.test(request.text)) {
     this.res.writeHead(200);
     postMessage("can i get a bbq huge pls tyty", false);
     this.res.end();
   }
 
-  else if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
+  if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
-    this.res.end();
-  }
-  
-  else {
-    console.log("don't care");
-    this.res.writeHead(200);
     this.res.end();
   }
 }
