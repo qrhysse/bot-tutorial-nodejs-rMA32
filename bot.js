@@ -99,7 +99,7 @@ function respond() {
       }
     }
 
-    var joke = "Hi" + jokeContent + ", I'm Dad.";
+    var joke = "Hi " + jokeContent + ", I'm Dad.";
     console.log("Joke activated.");
     console.log(joke);
     
