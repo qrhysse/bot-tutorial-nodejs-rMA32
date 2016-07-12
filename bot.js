@@ -18,97 +18,99 @@ function respond() {
       
   console.log(request);    
   
-  if(request.text && botRegexsts.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage(cool(), false);
-    this.res.end();
-  }
-  
-  if(request.text && botRegexBio.test(request.text)) {
-    var link = request.text;
-    link = link.replace(/from a biological (perspective|standpoint),?/i, "")
-    link = link.replace(/ /g, "+");
-    link = link.replace("%", "%25");
-
-    this.res.writeHead(200);
-    postMessage("https://www.google.com/#safe=off&q="+link, true);
-    this.res.end();
-  } 
-  
-  if(request.text && botRegexWee.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("Goddamn Weeaboo", false);
-    this.res.end();
-  }
-
-  if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
-    console.log("Thbby activated.");
-    this.res.writeHead(200);
-    postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
-    this.res.end();
-  }
-
-  if(request.text && botRegexDadJoke.test(request.text) && request.name !== "Dr. Q") {
-    var content = request.text;
-    var jokeVariable = content.replace(/.*?\bi'?m\b/i, "" );
-    var joke = "Hi" + jokeVariable + ", I'm Dad.";
-    // var contentLowercase = content.toLowerCase();
-    // var contentArray = content.split(' ');
-    // var jokeContent;
-    // var contentLCArray = contentLowercase.split(' ');
-    // var firstUpperIm = contentLCArray.indexOf("i'm");
-    // var firstLowerIm = contentLCArray.indexOf("im");
-    // var trueIndex = -69;
-
-    // if( (firstUpperIm !== firstLowerIm ) ) {
-    //   if( firstUpperIm > -1 ) {
-    //     trueIndex = firstUpperIm;
-    //   } else if( firstLowerIm > -1 ) {
-    //     trueIndex = firstLowerIm;
-    //   }
-    //   if( trueIndex != -69 ) {
-    //     contentArray.splice(0, trueIndex+1);
-    //     jokeContent = contentArray.join(' ');
-    //   }
-    // }
-
-    console.log("Joke activated.");
-    console.log(joke);
-    
-    // If the dad joke above contains the word dad
-    if(request.text && botRegexDad.test(request.text)){
-      console.log("don't care");
+  if( request.name !== "Dr. Q" ) {
+    if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
-      // this.res.end();
-    } else {
-      this.res.writeHead(200);
-      postMessage(joke, false);
+      postMessage(cool(), false);
       this.res.end();
     }
-  }
+    
+    if(request.text && botRegexBio.test(request.text)) {
+      var link = request.text;
+      link = link.replace(/from a biological (perspective|standpoint),?/i, "")
+      link = link.replace(/ /g, "+");
+      link = link.replace("%", "%25");
 
-  if( request.text && botRegexAlex.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
-    this.res.end();
-  }
-  
-  if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
-    this.res.writeHead(200);
-    postMessage("I'm not your fucking Dad.", false);
-    this.res.end();
-  }
+      this.res.writeHead(200);
+      postMessage("https://www.google.com/#safe=off&q="+link, true);
+      this.res.end();
+    } 
+    
+    if(request.text && botRegexWee.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Goddamn Weeaboo", false);
+      this.res.end();
+    }
 
-  if( request.text && botRegexSandwich.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("can i get a bbq huge pls tyty", false);
-    this.res.end();
-  }
+    if( request.text && botRegexThbby.test(request.text)) {
+      console.log("Thbby activated.");
+      this.res.writeHead(200);
+      postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
+      this.res.end();
+    }
 
-  if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
-    this.res.writeHead(200);
-    postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
-    this.res.end();
+    if(request.text && botRegexDadJoke.test(request.text)) {
+      var content = request.text;
+      var jokeVariable = content.replace(/.*?\bi'?m\b/i, "" );
+      var joke = "Hi" + jokeVariable + ", I'm Dad.";
+      // var contentLowercase = content.toLowerCase();
+      // var contentArray = content.split(' ');
+      // var jokeContent;
+      // var contentLCArray = contentLowercase.split(' ');
+      // var firstUpperIm = contentLCArray.indexOf("i'm");
+      // var firstLowerIm = contentLCArray.indexOf("im");
+      // var trueIndex = -69;
+
+      // if( (firstUpperIm !== firstLowerIm ) ) {
+      //   if( firstUpperIm > -1 ) {
+      //     trueIndex = firstUpperIm;
+      //   } else if( firstLowerIm > -1 ) {
+      //     trueIndex = firstLowerIm;
+      //   }
+      //   if( trueIndex != -69 ) {
+      //     contentArray.splice(0, trueIndex+1);
+      //     jokeContent = contentArray.join(' ');
+      //   }
+      // }
+
+      console.log("Joke activated.");
+      console.log(joke);
+      
+      // If the dad joke above contains the word dad
+      if(request.text && botRegexDad.test(request.text)){
+        console.log("don't care");
+        this.res.writeHead(200);
+        this.res.end();
+      } else {
+        this.res.writeHead(200);
+        postMessage(joke, false);
+        this.res.end();
+      }
+    }
+
+    if( request.text && botRegexAlex.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
+      this.res.end();
+    }
+    
+    if(request.text && botRegexDad.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("I'm not your fucking Dad.", false);
+      this.res.end();
+    }
+
+    if( request.text && botRegexSandwich.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("can i get a bbq huge pls tyty", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexRip.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
+      this.res.end();
+    }
   }
 }
 
