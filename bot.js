@@ -15,6 +15,8 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /(^i'?m|\si'?m\s*)/i;
       
+  console.log(request);    
+  
   if(request.text && botRegexsts.test(request.text)) {
     this.res.writeHead(200);
     postMessage(cool(), false);
@@ -50,7 +52,7 @@ function respond() {
 
   // Thbby update REGEX-FREE
   else if( request.text && ((String(request.text).slice(-1)) == '?') && request.name !== "Dr. Q" ) {
-    console.log(request);
+    console.log("Thbby activated.");
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/jehu3g8gr/thbby.jpg", false);
     this.res.end();
