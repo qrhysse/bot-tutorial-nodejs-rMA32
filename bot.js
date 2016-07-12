@@ -9,10 +9,11 @@ function respond() {
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s)kun/i;
   var botRegexDad = /(^dad$|\sdad)/i;
-  var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
+  var botRegexRip = /(^rip$|\srip)/i;
   var botRegexAlex = /(^actually$|\sactually)/i;
+  var botRegexSandwich = /(^sandwich$|\ssandwich)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
-  var botRegexDadJoke = /(^i'm|^im)\b/i;
+  var botRegexDadJoke = /.*?(i'm|im)\b/i;
       
   if(request.text && botRegexsts.test(request.text)) {
     this.res.writeHead(200);
@@ -59,6 +60,12 @@ function respond() {
     this.res.end();
   }
 
+  else if( request.text && botRegexSandwich.test(request.text)) {
+    this.res.writeHead(200);
+    postMessage("can i get a bbq huge pls tyty", false);
+    this.res.end();
+  }
+
   else if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
@@ -70,9 +77,29 @@ function respond() {
     //var repl = req.replace(botRegexDadJoke, "Hi");
     //var joke = repl + ", I'm Dad.";
     //var joke = "Hi " + botRegexDadJoke($2) + ", I'm dad.";
-    var content = String(request.text);
-    var jokeVariable = content.split(/.*?(i'm|im)/i);
-    var joke = "Hi" + jokeVariable[jokeVariable.length-1] + ", I'm Dad.";
+
+    var content = request.text;
+    var contentLowercase = content.toLowerCase();
+    var contentArray = content.split(' ');
+    var jokeContent;
+    var contentLCArray = contentLowercase.split(' ');
+    var firstUpperIm = contentLCArray.indexOf("i'm");
+    var firstLowerIm = contentLCArray.indexOf("im");
+    var trueIndex = -69;
+
+    if( (firstUpperIm !== firstLowerIm ) ) {
+      if( firstUpperIm > -1 ) {
+        trueIndex = firstUpperIm;
+      } else if( firstLowerIm > -1 ) {
+        trueIndex = firstLowerIm;
+      }
+      if( trueIndex != -69 ) {
+        contentArray.splice(0, trueIndex+1);
+        jokeContent = contentArray.join(' ');
+      }
+    }
+
+    var joke = "Hi" + jokeContent + ", I'm Dad.";
     console.log("Joke activated.");
     console.log(joke);
     
