@@ -13,7 +13,7 @@ function respond() {
   var botRegexAlex = /(^actually$|\sactually)/i;
   var botRegexSandwich = /(^sandwich$|\ssandwich)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
-  var botRegexDadJoke = /(^i'?m|\si'?m\s*)/i;
+  var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
       
   console.log(request);    
@@ -51,7 +51,7 @@ function respond() {
     this.res.end();
   }
 
-  // Thbby update REGEX-FREE
+  // Thbby update REGEX-FREE lol
   else if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
     console.log("Thbby activated.");
     this.res.writeHead(200);
@@ -59,30 +59,6 @@ function respond() {
     this.res.end();
   }
 
-  else if( request.text && botRegexAlex.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
-    this.res.end();
-  }
-  
-  else if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
-    this.res.writeHead(200);
-    postMessage("I'm not your fucking Dad.", false);
-    this.res.end();
-  }
-
-  else if( request.text && botRegexSandwich.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("can i get a bbq huge pls tyty", false);
-    this.res.end();
-  }
-
-  else if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
-    this.res.writeHead(200);
-    postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
-    this.res.end();
-  }
-  
   else if(request.text && botRegexDadJoke.test(request.text) && request.name !== "Dr. Q") {
     //var req = request.text;
     //var repl = req.replace(botRegexDadJoke, "Hi");
@@ -125,6 +101,30 @@ function respond() {
       postMessage(joke, false);
       this.res.end();
     }
+  }
+
+  else if( request.text && botRegexAlex.test(request.text)) {
+    this.res.writeHead(200);
+    postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
+    this.res.end();
+  }
+  
+  else if(request.text && botRegexDad.test(request.text) && request.name !== "Dr. Q") {
+    this.res.writeHead(200);
+    postMessage("I'm not your fucking Dad.", false);
+    this.res.end();
+  }
+
+  else if( request.text && botRegexSandwich.test(request.text)) {
+    this.res.writeHead(200);
+    postMessage("can i get a bbq huge pls tyty", false);
+    this.res.end();
+  }
+
+  else if(request.text && botRegexRip.test(request.text) && request.name !== "Dr. Q") {
+    this.res.writeHead(200);
+    postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
+    this.res.end();
   }
   
   else {
