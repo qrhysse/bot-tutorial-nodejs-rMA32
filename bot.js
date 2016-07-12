@@ -55,7 +55,7 @@ function respond() {
   else if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
     console.log("Thbby activated.");
     this.res.writeHead(200);
-    postMessage("https://s31.postimg.org/jehu3g8gr/thbby.jpg", false);
+    postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
     this.res.end();
   }
 
