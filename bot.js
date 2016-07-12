@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /Dr. Q, status(!|.)?/i;
-  var botRegexBio = /from a biological perspective,?/i;
+  var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s)kun/i;
   var botRegexDad = /(^dad$|\sdad)/i;
   var botRegexRip = /(^rip$|\srip)/i;
@@ -20,7 +20,7 @@ function respond() {
   } 
   else if(request.text && botRegexBio.test(request.text)) {
     var link = request.text;
-    link = link.replace(/from a biological perspective,?/i, "")
+    link = link.replace(/from a biological (perspective|standpoint),?/i, "")
     link = link.replace(/ /g, "+");
 
     this.res.writeHead(200);
