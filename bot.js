@@ -91,7 +91,7 @@ function postMessage(response) {
   var botResponse, options, body, botReq;
 
   botResponse = response;
-  botResponse = botResponse.relace(/%/g, "percent");
+  botResponse = botResponse.replace(/%/g, " percent");
 
   options = {
     hostname: 'api.groupme.com',
