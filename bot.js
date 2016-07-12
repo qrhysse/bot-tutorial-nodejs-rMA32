@@ -52,7 +52,7 @@ function respond() {
   }
 
   // Thbby update REGEX-FREE
-  else if( request.text && botRegexAlex.test(request.text) && request.name !== "Dr. Q" ) {
+  else if( request.text && botRegexThbby.test(request.text) && request.name !== "Dr. Q" ) {
     console.log("Thbby activated.");
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/jehu3g8gr/thbby.jpg", false);
