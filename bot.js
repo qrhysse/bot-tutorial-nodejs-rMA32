@@ -14,6 +14,7 @@ function respond() {
   var botRegexSandwich = /(^sandwich$|\ssandwich)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /(^i'?m|\si'?m\s*)/i;
+  var botRegexThbby = /\?\s*$/i;
       
   console.log(request);    
   
@@ -51,7 +52,7 @@ function respond() {
   }
 
   // Thbby update REGEX-FREE
-  else if( request.text && ((String(request.text).slice(-1)) == '?') && request.name !== "Dr. Q" ) {
+  else if( request.text && botRegexAlex.test(request.text) && request.name !== "Dr. Q" ) {
     console.log("Thbby activated.");
     this.res.writeHead(200);
     postMessage("https://s31.postimg.org/jehu3g8gr/thbby.jpg", false);
