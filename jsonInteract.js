@@ -6,6 +6,7 @@ function spaceCalc(sbheader, header, obj) {
   }
 
 function getScoreboard(lols, darns) {
+    console.log('getScoreboard called');
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
@@ -14,16 +15,17 @@ function getScoreboard(lols, darns) {
     var lolLine = totalLols + lolspaces + lols;
     var darnLine = totalDarns + darnspaces + darns;
     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine;
+    console.log('Scoreboard is: ', scoreboard);
     return scoreboard;
 }
 
 module.exports = {
-  scoreboard: function(forParse, currentRes) {
+  scoreboard: function(forParse) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount;
+    var jsonObj, lolCount, darnCount, returnval;
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
@@ -32,7 +34,9 @@ module.exports = {
       lolCount = jsonObj.lols;
       darnCount = jsonObj.darns;
       if( forParse && botRegexScoreboard.test(forParse)) {
-        return getScoreboard(lolCount, darnCount);
+        returnval = getScoreboard(lolCount, darnCount);
+        console.log("RETURN VAL: ", returnval);
+        return returnval;
       } else {
         if( lolTrigger.test(forParse)) {
           count = (forParse.match(lolTrigger) || []).length;

@@ -33,7 +33,7 @@ function respond() {
       this.res.end();
     }
 
-    sbPost = jsonInteract.scoreboard(request.text, this);
+    sbPost = jsonInteract.scoreboard(request.text);
     console.log("SCOREBOARD OUTPUT: ", sbPost);
     if( sbPost !== 0 ) {
       this.res.writeHead(200);
