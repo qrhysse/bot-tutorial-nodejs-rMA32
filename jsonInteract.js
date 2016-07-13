@@ -1,12 +1,12 @@
 // jsonInteract.js
 
 module.exports = {
-  function spaceCalc(sbheader, header, obj) {
+  spaceCalc: function(sbheader, header, obj) {
     var num = sbheader.length - (String(obj).length + header.length);
     return Array(num+1).join(" ");
   }
 
-  function getScoreboard(lols, darns) {
+  getScoreboard: function(lols, darns) {
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
@@ -18,7 +18,7 @@ module.exports = {
     return scoreboard;
   }
 
-  function scoreboard(forParse, currentRes) {
+  scoreboard: function(forParse, currentRes) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
