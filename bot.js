@@ -12,9 +12,13 @@ function respond() {
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z])/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z])/i;
+  var lolTrigger = /(lol|\blol)/ig;
+  var darnTrigger = /(darn|\bdarn)/ig;
+  var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
-  var botRegexThbby = /\?\s*$/i;
+  var botRegexThbby = /\?\s*$/i,
+  var loldarnCount = JSON.parse(ld.json);
       
   console.log(request);    
   
@@ -22,6 +26,19 @@ function respond() {
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
+      this.res.end();
+    }
+
+    if( request.text && lolTrigger.test(request.text)) {
+      loldarnCount.lols++;
+    }
+    if( request.text && darnTrigger.test(request.text))) {
+      loldarnCount.darns++;
+    }
+    if( request.text && botRegexScoreboard.test(request.text)) {
+      var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\n\nTOTAL DARNS: " + loldarnCount.darns;
+      this.res.writeHead(200);
+      postMessage(scoreboard, false);
       this.res.end();
     }
     
