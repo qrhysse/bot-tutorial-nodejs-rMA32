@@ -168,7 +168,7 @@ function respond() {
 }
 
 function pausecomp(ms) {
-  var ms += new Date().getTime();
+  ms += new Date().getTime();
   while (new Date() < ms){}
   } 
 
