@@ -153,16 +153,21 @@ function respond() {
       console.log("Skeleton activated.");
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
-      this.res.end();
+      pausecomp(5000);
       this.res.writeHead(200);
       postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
-      this.res.end();
+      pausecomp(5000);
       this.res.writeHead(200);
       postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
-      this.res.end();
+      pausecomp(5000);
     }
   }
 }
+
+function pausecomp(ms) {
+  var ms += new Date().getTime();
+  while (new Date() < ms){}
+  } 
 
 function postMessage(response, isLink) {
   var botResponse, options, body, botReq;
