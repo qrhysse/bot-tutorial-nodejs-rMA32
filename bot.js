@@ -18,7 +18,7 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i,
-  var loldarnCount = JSON.parse(ld.json);
+  var loldarnCount = JSON.parse('ld.json');
   
   console.log(loldarnCount);
   console.log(request);    
