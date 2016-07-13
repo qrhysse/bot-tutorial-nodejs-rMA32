@@ -14,6 +14,7 @@ function respond() {
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
+  var sbPost;
   // var lolTrigger = /(lol|\blol)/ig;
   // var darnTrigger = /(darn|\bdarn)/ig;
   // var botRegexScoreboard = /\/scoreboard/i;
@@ -32,7 +33,12 @@ function respond() {
       this.res.end();
     }
 
-    jsonInteract.scoreboard(request.text, this);
+    sbPost = jsonInteract.scoreboard(request.text, this);
+    if( sbPost !== 0 ) {
+      this.res.writeHead(200);
+      postMessage(sbPost, false);
+      this.res.end();
+    }
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;

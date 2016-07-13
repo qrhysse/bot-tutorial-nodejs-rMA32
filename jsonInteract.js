@@ -31,21 +31,22 @@ module.exports = {
       jsonObj = JSON.parse(body);
       lolCount = jsonObj.lols;
       darnCount = jsonObj.darns;
-      if( lolTrigger.test(forParse)) {
-        count = (forParse.match(lolTrigger) || []).length;
-        lolCount += count;
-      }
-      if( darnTrigger.test(forParse)) {
-        count = (forParse.match(darnTrigger) || []).length;
-        darnCount += count;
-      }
       if( forParse && botRegexScoreboard.test(forParse)) {
-        currentRes.res.writeHead(200);
-        postMessage(getScoreboard(lolCount, darnCount), false);
-        currentRes.res.end();
+        return getScoreboard(lolCount, darnCount);
+      } else {
+        if( lolTrigger.test(forParse)) {
+          count = (forParse.match(lolTrigger) || []).length;
+          lolCount += count;
+        }
+        if( darnTrigger.test(forParse)) {
+          count = (forParse.match(darnTrigger) || []).length;
+          darnCount += count;
+        }
+        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+        return 0;
       }
-      request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
     }
   });
+  return 0;
   }
 }
