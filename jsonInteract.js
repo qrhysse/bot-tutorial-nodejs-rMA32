@@ -25,8 +25,7 @@ module.exports = {
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount,
-    var returnval = 0;
+    var jsonObj, lolCount, darnCount;
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
