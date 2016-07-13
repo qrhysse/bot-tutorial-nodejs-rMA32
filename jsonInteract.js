@@ -20,12 +20,12 @@ function getScoreboard(lols, darns) {
 }
 
 module.exports = {
-  scoreboard: function(forParse) {
+  scoreboard: function(forParse, callback) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount, callback = 69;
+    var jsonObj, lolCount, darnCount,
     var returnval = 0;
     var count = 0;
 
@@ -47,13 +47,14 @@ module.exports = {
             darnCount += count;
           }
           request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
-          returnval =  0;
+          returnval = 0;
         }
       } else {
         returnval = 0;
       }
-    }, callback);
-    console.log("CALLBACK: ", callback);
+      callback(returnval);
+    });
+    console.log("CALLBACK: ", lolCount);
     return returnval;
   }
 }
