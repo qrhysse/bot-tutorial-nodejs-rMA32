@@ -29,28 +29,29 @@ module.exports = {
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      jsonObj = JSON.parse(body);
-      lolCount = jsonObj.lols;
-      darnCount = jsonObj.darns;
-      if( forParse && botRegexScoreboard.test(forParse)) {
-        returnval = getScoreboard(lolCount, darnCount);
-        console.log("RETURN VAL: ", returnval);
-        return returnval;
+      if (!error && response.statusCode == 200) {
+        jsonObj = JSON.parse(body);
+        lolCount = jsonObj.lols;
+        darnCount = jsonObj.darns;
+        if( forParse && botRegexScoreboard.test(forParse)) {
+          returnval = getScoreboard(lolCount, darnCount);
+          console.log("RETURN VAL: ", returnval);
+          return returnval;
+        } else {
+          if( lolTrigger.test(forParse)) {
+            count = (forParse.match(lolTrigger) || []).length;
+            lolCount += count;
+          }
+          if( darnTrigger.test(forParse)) {
+            count = (forParse.match(darnTrigger) || []).length;
+            darnCount += count;
+          }
+          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+          return 0;
+        }
       } else {
-        if( lolTrigger.test(forParse)) {
-          count = (forParse.match(lolTrigger) || []).length;
-          lolCount += count;
-        }
-        if( darnTrigger.test(forParse)) {
-          count = (forParse.match(darnTrigger) || []).length;
-          darnCount += count;
-        }
-        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
         return 0;
       }
-    } else {
-      return 0;
-    }
-  });
+    });
+  }
 }
