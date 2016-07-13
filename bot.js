@@ -9,7 +9,7 @@ function respond() {
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
   var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
-  var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
+  var botRegexRip = /(^r\.?i\.?p\.?$|\br\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
