@@ -31,12 +31,12 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /Dr. Q, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
-  var botRegexWee = /(-|\s[^a-z])kun/i;
-  var botRegexDad = /(^dad$|\bdad[^a-z])/i;
-  var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
-  var botRegexAlex = /(^actually$|\bactually[^a-z])/i;
-  var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z])/i;
-  var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z])/i;
+  var botRegexWee = /(-|\s[^a-z]?)kun/i;
+  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
+  var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
+  var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
+  var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
+  var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
   // var lolTrigger = /(lol|\blol)/ig;
   // var darnTrigger = /(darn|\bdarn)/ig;
   // var botRegexScoreboard = /\/scoreboard/i;
@@ -72,7 +72,7 @@ function respond() {
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
-      link = link.replace(/from a biological (perspective|standpoint),?/i, "")
+      link = link.replace(/from a biological (perspective|standpoint),?/i, "");
       link = link.replace(/ /g, "+");
       link = link.replace("%", "%25");
 
