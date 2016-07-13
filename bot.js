@@ -19,7 +19,8 @@ function respond() {
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i,
   var loldarnCount = JSON.parse(ld.json);
-      
+  
+  console.log(loldarnCount);
   console.log(request);    
   
   if( request.name !== "Dr. Q" ) {
