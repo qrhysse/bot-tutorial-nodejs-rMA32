@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 
 function spaceCalc(sbheader, header, obj) {
   var num = sbheader.length - (String(obj).length + header.length);
-  return Array(num+1).join(" ");
+  return Array(num+1).join("%20");
 }
 
 function getScoreboard(lols, darns) {
