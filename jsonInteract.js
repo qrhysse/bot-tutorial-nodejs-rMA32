@@ -36,7 +36,6 @@ module.exports = {
         darnCount = jsonObj.darns;
         if( forParse && botRegexScoreboard.test(forParse)) {
           returnval = getScoreboard(lolCount, darnCount);
-          console.log("RETURN VAL: ", returnval);
         } else {
           if( lolTrigger.test(forParse)) {
             count = (forParse.match(lolTrigger) || []).length;
@@ -53,6 +52,7 @@ module.exports = {
         returnval = 0;
       }
     });
+    console.log("RETURN VAL: ", returnval);
     return returnval;
   }
 }
