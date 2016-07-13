@@ -4,7 +4,7 @@ module.exports = {
   spaceCalc: function(sbheader, header, obj) {
     var num = sbheader.length - (String(obj).length + header.length);
     return Array(num+1).join(" ");
-  }
+  },
 
   getScoreboard: function(lols, darns) {
     var scoreboardHead = "-------------SCOREBOARD-------------";
@@ -16,7 +16,7 @@ module.exports = {
     var darnLine = totalDarns + darnspaces + darns;
     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine;
     return scoreboard;
-  }
+  },
 
   scoreboard: function(forParse, currentRes) {
     var lolTrigger = /(lol|\blol)/ig;
