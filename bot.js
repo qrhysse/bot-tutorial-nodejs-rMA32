@@ -152,21 +152,21 @@ function respond() {
     if( request.text && botRegexSkeleton.test(request.text)) {
       console.log("Skeleton activated.");
       
-      this.res.writeHead(200);
-      postMessage("Did somebody say skeleton?", false);
-      this.res.end();
+      // this.res.writeHead(200);
+      // postMessage("Did somebody say skeleton?", false);
+      // this.res.end();
 
-      setTimeout(function(thing){
-      thing.res.writeHead(200);
-      postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
-      thing.res.end();
-      }(this), 10000);
+      // setTimeout(function(thing){
+      // thing.res.writeHead(200);
+      // postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
+      // thing.res.end();
+      // }(this), 10000);
       
-      setTimeout(function(thing){
-      thing.res.writeHead(200);
-      postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
-      thing.res.end();
-      }(this), 200000);
+      // setTimeout(function(thing){
+      // thing.res.writeHead(200);
+      // postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
+      // thing.res.end();
+      // }(this), 200000);
       
     }
   }
