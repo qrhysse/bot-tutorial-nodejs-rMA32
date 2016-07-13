@@ -172,11 +172,6 @@ function respond() {
   }
 }
 
-// function pausecomp(ms) {
-//   ms += new Date().getTime();
-//   while (new Date() < ms){}
-//   } 
-
 function postMessage(response, isLink) {
   var botResponse, options, body, botReq;
 
