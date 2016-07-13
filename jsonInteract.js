@@ -29,11 +29,11 @@ module.exports = {
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+      var returnval = 0;
       if (!error && response.statusCode == 200) {
-        jsonObj = JSON.parse(body);
-        callback = 6900;
-        lolCount = jsonObj.lols;
-        darnCount = jsonObj.darns;
+        var jsonObj = JSON.parse(body);
+        var lolCount = jsonObj.lols;
+        var darnCount = jsonObj.darns;
         if( forParse && botRegexScoreboard.test(forParse)) {
           returnval = getScoreboard(lolCount, darnCount);
         } else {
@@ -54,6 +54,5 @@ module.exports = {
       callback(returnval);
     });
     console.log("CALLBACK: ", lolCount);
-    return returnval;
   }
 }
