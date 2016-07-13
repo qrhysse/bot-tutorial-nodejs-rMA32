@@ -34,6 +34,7 @@ function respond() {
     }
 
     sbPost = jsonInteract.scoreboard(request.text, this);
+    console.log("SCOREBOARD OUTPUT: ", sbPost);
     if( sbPost !== 0 ) {
       this.res.writeHead(200);
       postMessage(sbPost, false);
