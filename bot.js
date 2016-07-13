@@ -75,17 +75,6 @@ function respond() {
 
       console.log("Joke activated.");
       console.log(joke);
-      
-      // If the dad joke above contains the word dad
-      if(request.text && botRegexDad.test(request.text)){
-        console.log("don't care");
-        this.res.writeHead(200);
-        this.res.end();
-      } else {
-        this.res.writeHead(200);
-        postMessage(joke, false);
-        this.res.end();
-      }
     }
 
     if( request.text && botRegexAlex.test(request.text)) {
