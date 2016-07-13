@@ -7,11 +7,11 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /Dr. Q, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
-  var botRegexWee = /(-|\s[^a-z])kun/i;
-  var botRegexDad = /(^dad$|\bdad[^a-z])/i;
+  var botRegexWee = /(-|\s[^a-z]?)kun/i;
+  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
-  var botRegexAlex = /(^actually$|\bactually[^a-z])/i;
-  var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z])/i;
+  var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
+  var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
