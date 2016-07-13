@@ -25,13 +25,14 @@ module.exports = {
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount, callback;
+    var jsonObj, lolCount, darnCount, callback = 69;
     var returnval = 0;
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         jsonObj = JSON.parse(body);
+        callback = 6900;
         lolCount = jsonObj.lols;
         darnCount = jsonObj.darns;
         if( forParse && botRegexScoreboard.test(forParse)) {
