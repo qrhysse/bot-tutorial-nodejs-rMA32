@@ -25,7 +25,8 @@ module.exports = {
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount, returnval;
+    var jsonObj, lolCount, darnCount;
+    var returnval = 0;
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
@@ -36,7 +37,6 @@ module.exports = {
         if( forParse && botRegexScoreboard.test(forParse)) {
           returnval = getScoreboard(lolCount, darnCount);
           console.log("RETURN VAL: ", returnval);
-          return returnval;
         } else {
           if( lolTrigger.test(forParse)) {
             count = (forParse.match(lolTrigger) || []).length;
@@ -47,12 +47,12 @@ module.exports = {
             darnCount += count;
           }
           request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
-          return 0;
+          returnval =  0;
         }
       } else {
-        return 0;
+        returnval = 0;
       }
     });
-    return 0;
+    return returnval;
   }
 }
