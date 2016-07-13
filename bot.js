@@ -152,17 +152,17 @@ function respond() {
     if( request.text && botRegexSkeleton.test(request.text)) {
       console.log("Skeleton activated.");
       
-      setTimeout(function(){
-      this.res.writeHead(200);
+      setTimeout(function(thing){
+      thing.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
-      }, 5000);
+      }(this), 5000);
 
-      setTimeout(function(){
-      this.res.writeHead(200);
+      setTimeout(function(thing){
+      thing.res.writeHead(200);
       postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
       this.res.end();
-      }, 5000);
+      }(this), 5000);
       
       this.res.writeHead(200);
       postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
