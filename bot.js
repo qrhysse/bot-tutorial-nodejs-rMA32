@@ -35,7 +35,8 @@ function respond() {
 
     sbPost = jsonInteract.scoreboard(request.text);
     console.log("SCOREBOARD OUTPUT:", sbPost);
-    if( (sbPost !== 0)||(typeof sbPost !== "undefined")) {
+    if( (sbPost != 0)||(typeof sbPost !== "undefined")) {
+      console.log("Output is not zero nor undefined");
       this.res.writeHead(200);
       postMessage(sbPost, false);
       this.res.end();
