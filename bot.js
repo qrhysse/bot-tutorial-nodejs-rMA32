@@ -3,6 +3,29 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
+function scoreboard() {
+  var lolTrigger = /(lol|\blol)/ig;
+  var darnTrigger = /(darn|\bdarn)/ig;
+  var loldarnCount = require('./ld.json');
+  var count;
+
+  if( request.text && lolTrigger.test(request.text)) {
+    count = (temp.match(lolTrigger) || []).length;
+    loldarnCount.lols += count;
+  }
+  if( request.text && darnTrigger.test(request.text)) {
+    count = (temp.match(darnTrigger) || []).length;
+    loldarnCount.darns += count;
+  }
+  if( request.text && botRegexScoreboard.test(request.text)) {
+    var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\nTOTAL DARNS: " + loldarnCount.darns;
+    this.res.writeHead(200);
+    postMessage(scoreboard, false);
+    this.res.end();
+  }
+  return;
+}
+
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /Dr. Q, status(!|.)?/i;
@@ -12,15 +35,15 @@ function respond() {
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z])/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z])/i;
-  var lolTrigger = /(lol|\blol)/ig;
-  var darnTrigger = /(darn|\bdarn)/ig;
-  var botRegexScoreboard = /\/scoreboard/i;
+  // var lolTrigger = /(lol|\blol)/ig;
+  // var darnTrigger = /(darn|\bdarn)/ig;
+  // var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
-  var loldarnCount = require('./ld.json');
+  // var loldarnCount = require('./ld.json');
   
-  console.log(loldarnCount);
+  // console.log(loldarnCount);
   console.log(request);    
   
   if( request.name !== "Dr. Q" ) {
@@ -30,18 +53,20 @@ function respond() {
       this.res.end();
     }
 
-    if( request.text && lolTrigger.test(request.text)) {
-      loldarnCount.lols++;
-    }
-    if( request.text && darnTrigger.test(request.text)) {
-      loldarnCount.darns++;
-    }
-    if( request.text && botRegexScoreboard.test(request.text)) {
-      var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\n\nTOTAL DARNS: " + loldarnCount.darns;
-      this.res.writeHead(200);
-      postMessage(scoreboard, false);
-      this.res.end();
-    }
+    scoreboard();
+
+    // if( request.text && lolTrigger.test(request.text)) {
+    //   loldarnCount.lols++;
+    // }
+    // if( request.text && darnTrigger.test(request.text)) {
+    //   loldarnCount.darns++;
+    // }
+    // if( request.text && botRegexScoreboard.test(request.text)) {
+    //   var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\n\nTOTAL DARNS: " + loldarnCount.darns;
+    //   this.res.writeHead(200);
+    //   postMessage(scoreboard, false);
+    //   this.res.end();
+    // }
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
