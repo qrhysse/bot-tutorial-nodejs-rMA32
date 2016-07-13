@@ -160,13 +160,13 @@ function respond() {
       thing.res.writeHead(200);
       postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
       thing.res.end();
-      }(this), 5000);
+      }(this), 10000);
       
       setTimeout(function(thing){
       thing.res.writeHead(200);
       postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
       thing.res.end();
-      }(this), 10000);
+      }(this), 200000);
       
     }
   }
