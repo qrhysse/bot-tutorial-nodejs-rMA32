@@ -11,11 +11,11 @@ function scoreboard(forParse, currentRes) {
   var count = 0;
 
   if( forParse && lolTrigger.test(forParse)) {
-    count = (temp.match(lolTrigger) || []).length;
+    count = (forParse.match(lolTrigger) || []).length;
     loldarnCount.lols += count;
   }
   if( forParse && darnTrigger.test(forParse)) {
-    count = (temp.match(darnTrigger) || []).length;
+    count = (forParse.match(darnTrigger) || []).length;
     loldarnCount.darns += count;
   }
   if( forParse && botRegexScoreboard.test(forParse)) {
