@@ -151,6 +151,9 @@ function respond() {
 
     if( request.text && botRegexSkeleton.test(request.text)) {
       console.log("Skeleton activated.");
+      this.res.writeHead(200);
+      postMessage("Did somebody say skeleton?", false);
+      this.res.end();
       
       // this.res.writeHead(200);
       // postMessage("Did somebody say skeleton?", false);
