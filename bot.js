@@ -1,31 +1,8 @@
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
+var jsonInteract = require('./jsonInteract');
 
 var botID = process.env.BOT_ID;
-
-function scoreboard(forParse, currentRes) {
-  var lolTrigger = /(lol|\blol)/ig;
-  var darnTrigger = /(darn|\bdarn)/ig;
-  var botRegexScoreboard = /\/scoreboard/i;
-  var loldarnCount = require('./ld.json');
-  var count = 0;
-
-  if( forParse && lolTrigger.test(forParse)) {
-    count = (forParse.match(lolTrigger) || []).length;
-    loldarnCount.lols += count;
-  }
-  if( forParse && darnTrigger.test(forParse)) {
-    count = (forParse.match(darnTrigger) || []).length;
-    loldarnCount.darns += count;
-  }
-  if( forParse && botRegexScoreboard.test(forParse)) {
-    var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\nTOTAL DARNS: " + loldarnCount.darns;
-    currentRes.res.writeHead(200);
-    postMessage(scoreboard, false);
-    currentRes.res.end();
-  }
-  return;
-}
 
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
@@ -55,20 +32,7 @@ function respond() {
       this.res.end();
     }
 
-    scoreboard(request.text, this);
-
-    // if( request.text && lolTrigger.test(request.text)) {
-    //   loldarnCount.lols++;
-    // }
-    // if( request.text && darnTrigger.test(request.text)) {
-    //   loldarnCount.darns++;
-    // }
-    // if( request.text && botRegexScoreboard.test(request.text)) {
-    //   var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\n\nTOTAL DARNS: " + loldarnCount.darns;
-    //   this.res.writeHead(200);
-    //   postMessage(scoreboard, false);
-    //   this.res.end();
-    // }
+    jsonInteract.scoreboard(request.text, this);
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
