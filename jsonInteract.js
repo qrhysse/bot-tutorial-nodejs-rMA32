@@ -49,8 +49,8 @@ module.exports = {
         request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
         return 0;
       }
+    } else {
+      return 0;
     }
   });
-  //return 0;
-  }
 }
