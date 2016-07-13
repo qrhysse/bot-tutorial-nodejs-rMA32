@@ -1,9 +1,9 @@
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
-//var jsonInteract = require('./jsonInteract');
 
 var botID = process.env.BOT_ID;
 
+// Non-breaking spaces save the day
 function spaceCalc(sbheader, header, obj) {
   var num = sbheader.length - (String(obj).length + header.length);
   return Array(num+1).join('\u00A0');
