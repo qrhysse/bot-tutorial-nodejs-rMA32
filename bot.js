@@ -34,7 +34,7 @@ function respond() {
     }
 
     sbPost = jsonInteract.scoreboard(request.text);
-    console.log("SCOREBOARD OUTPUT:", sbPost);
+    console.log("SCOREBOARD OUTPUT:", sbPost, "which is a", (typeof sbPost));
     if( (sbPost != 0)||(typeof sbPost !== "undefined")) {
       console.log("Output is not zero nor undefined");
       this.res.writeHead(200);
