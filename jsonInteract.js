@@ -15,7 +15,6 @@ function getScoreboard(lols, darns) {
     var darnLine = totalDarns + darnspaces + darns;
     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine;
     return scoreboard;
-  }
 }
 
 module.exports = {
