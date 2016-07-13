@@ -33,7 +33,7 @@ function respond() {
     if( request.text && lolTrigger.test(request.text)) {
       loldarnCount.lols++;
     }
-    if( request.text && darnTrigger.test(request.text))) {
+    if( request.text && darnTrigger.test(request.text)) {
       loldarnCount.darns++;
     }
     if( request.text && botRegexScoreboard.test(request.text)) {
