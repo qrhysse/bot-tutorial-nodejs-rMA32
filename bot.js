@@ -18,7 +18,7 @@ function getScoreboard(lols, darns) {
     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
     var lolLine = totalLols + lolspaces + lols;
     var darnLine = totalDarns + darnspaces + darns;
-    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\nSince July 13, 2016";
+    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n-----Since July 13, 2016-----";
     console.log('Scoreboard is: ', scoreboard);
     return scoreboard;
 }
