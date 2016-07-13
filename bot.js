@@ -159,6 +159,7 @@ function respond() {
       this.res.end();
       this.res.writeHead(200);
       postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
+      this.res.end();
     }
   }
 }
