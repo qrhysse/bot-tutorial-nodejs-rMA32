@@ -3,7 +3,7 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
-function scoreboard(forParse) {
+function scoreboard(forParse, currentRes) {
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
   var botRegexScoreboard = /\/scoreboard/i;
@@ -20,9 +20,9 @@ function scoreboard(forParse) {
   }
   if( forParse && botRegexScoreboard.test(forParse)) {
     var scoreboard = "-------------SCOREBOARD-------------\n\nTOTAL LOLS: " + loldarnCount.lols + "\nTOTAL DARNS: " + loldarnCount.darns;
-    this.res.writeHead(200);
+    currentRes.res.writeHead(200);
     postMessage(scoreboard, false);
-    this.res.end();
+    currentRes.res.end();
   }
   return;
 }
@@ -54,7 +54,7 @@ function respond() {
       this.res.end();
     }
 
-    scoreboard(request.text);
+    scoreboard(request.text, this);
 
     // if( request.text && lolTrigger.test(request.text)) {
     //   loldarnCount.lols++;
