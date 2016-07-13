@@ -25,7 +25,7 @@ module.exports = {
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount;
+    var jsonObj, lolCount, darnCount, callback;
     var returnval = 0;
     var count = 0;
 
@@ -51,8 +51,8 @@ module.exports = {
       } else {
         returnval = 0;
       }
-    });
-    console.log("RETURN VAL: ", returnval);
+    }, callback);
+    console.log("CALLBACK: ", callback);
     return returnval;
   }
 }
