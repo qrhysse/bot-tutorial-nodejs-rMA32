@@ -70,6 +70,9 @@ function respond() {
       var content = request.text;
       var jokeVariable = content.replace(/.*?\bi'?m\b/i, "" );
       var joke = "Hi" + jokeVariable + ", I'm Dad.";
+      this.res.writeHead(200);
+      postMessage(joke, false);
+      this.res.end();
       // var contentLowercase = content.toLowerCase();
       // var contentArray = content.split(' ');
       // var jokeContent;
