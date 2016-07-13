@@ -23,7 +23,7 @@ function getScoreboard(lols, darns) {
     return scoreboard;
 }
 
-function scoreboard(forParse, response) {
+function scoreboard(forParse, resp) {
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
   var botRegexScoreboard = /\/scoreboard/i;
@@ -38,9 +38,9 @@ function scoreboard(forParse, response) {
       var darnCount = jsonObj.darns;
       if( forParse && botRegexScoreboard.test(forParse)) {
         returnval = getScoreboard(lolCount, darnCount);
-        response.res.writeHead(200);
+        resp.res.writeHead(200);
         postMessage(returnval, false);
-        response.res.end();
+        resp.res.end();
       } else {
         if( lolTrigger.test(forParse)) {
           count = (forParse.match(lolTrigger) || []).length;
