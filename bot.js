@@ -36,6 +36,7 @@ function respond() {
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z])/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z])/i;
+  var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z])/i;
   // var lolTrigger = /(lol|\blol)/ig;
   // var darnTrigger = /(darn|\bdarn)/ig;
   // var botRegexScoreboard = /\/scoreboard/i;
@@ -146,6 +147,18 @@ function respond() {
       this.res.writeHead(200);
       postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
       this.res.end();
+    }
+
+    if( request.text && botRegexSkeleton.test(request.text)) {
+      console.log("Skeleton activated.");
+      this.res.writeHead(200);
+      postMessage("Did somebody say skeleton?", false);
+      this.res.end();
+      this.res.writeHead(200);
+      postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
+      this.res.end();
+      this.res.writeHead(200);
+      postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
     }
   }
 }
