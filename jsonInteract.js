@@ -1,12 +1,11 @@
 // jsonInteract.js
 
-module.exports = {
-  spaceCalc: function(sbheader, header, obj) {
+function spaceCalc(sbheader, header, obj) {
     var num = sbheader.length - (String(obj).length + header.length);
     return Array(num+1).join(" ");
-  },
+  }
 
-  getScoreboard: function(lols, darns) {
+function getScoreboard(lols, darns) {
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
@@ -16,8 +15,10 @@ module.exports = {
     var darnLine = totalDarns + darnspaces + darns;
     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine;
     return scoreboard;
-  },
+  }
+}
 
+module.exports = {
   scoreboard: function(forParse, currentRes) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
