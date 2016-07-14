@@ -24,39 +24,41 @@ function getScoreboard(lols, darns) {
 }
 
 function scoreboard(forParse, resp) {
-  var lolTrigger = /(lol|\blol)/ig;
-  var darnTrigger = /(darn|\bdarn)/ig;
-  var botRegexScoreboard = /\/scoreboard/i;
-  var request = require('request');
-  var jsonObj, lolCount, darnCount, returnval = 0;
-  var count = 0;
+  if( forParse.group_id !== '23073839' ) {
+    var lolTrigger = /(lol|\blol)/ig;
+    var darnTrigger = /(darn|\bdarn)/ig;
+    var botRegexScoreboard = /\/scoreboard/i;
+    var request = require('request');
+    var jsonObj, lolCount, darnCount, returnval = 0;
+    var count = 0;
 
-  request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var jsonObj = JSON.parse(body);
-      var lolCount = jsonObj.lols;
-      var darnCount = jsonObj.darns;
-      if( forParse && botRegexScoreboard.test(forParse)) {
-        returnval = getScoreboard(lolCount, darnCount);
-        resp.res.writeHead(200);
-        postMessage(returnval, false);
-        resp.res.end();
+    request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var jsonObj = JSON.parse(body);
+        var lolCount = jsonObj.lols;
+        var darnCount = jsonObj.darns;
+        if( forParse.text && botRegexScoreboard.test(forParse.text)) {
+          returnval = getScoreboard(lolCount, darnCount);
+          resp.res.writeHead(200);
+          postMessage(returnval, false);
+          resp.res.end();
+        } else {
+          if( lolTrigger.test(forParse.text)) {
+            count = (forParse.text.match(lolTrigger) || []).length;
+            lolCount += count;
+          }
+          if( darnTrigger.test(forParse.text)) {
+            count = (forParse.text.match(darnTrigger) || []).length;
+            darnCount += count;
+          }
+          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+          returnval = 0;
+        }
       } else {
-        if( lolTrigger.test(forParse)) {
-          count = (forParse.match(lolTrigger) || []).length;
-          lolCount += count;
-        }
-        if( darnTrigger.test(forParse)) {
-          count = (forParse.match(darnTrigger) || []).length;
-          darnCount += count;
-        }
-        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
         returnval = 0;
       }
-    } else {
-      returnval = 0;
-    }
-  });
+    });
+  }
 }
 
 function respond() { 
@@ -69,16 +71,15 @@ function respond() {
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
+  var botRegexChina = /(^china$|\bchina[^a-z]?)/i;
   var sbPost;
-  // var lolTrigger = /(lol|\blol)/ig;
-  // var darnTrigger = /(darn|\bdarn)/ig;
-  // var botRegexScoreboard = /\/scoreboard/i;
+  var lolTrigger = /(lol|\blol)/ig;
+  var darnTrigger = /(darn|\bdarn)/ig;
+  var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
-  // var loldarnCount = require('./ld.json');
   
-  // console.log(loldarnCount);
   console.log(request);    
   
   if( request.name !== "JokeyBot" ) {
@@ -88,7 +89,7 @@ function respond() {
       this.res.end();
     }
 
-    scoreboard( request.text, this );
+    scoreboard( request, this );
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
@@ -166,6 +167,12 @@ function respond() {
     if(request.text && botRegexRip.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexChina.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://s32.postimg.org/s65wi0yed/china.png", false);
       this.res.end();
     }
 
