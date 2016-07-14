@@ -61,7 +61,7 @@ function scoreboard(forParse, resp) {
 
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
-  var botRegexsts = /Dr. Q, status(!|.)?/i;
+  var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
   var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
@@ -81,7 +81,7 @@ function respond() {
   // console.log(loldarnCount);
   console.log(request);    
   
-  if( request.name !== "Dr. Q" ) {
+  if( request.name !== "JokeyBot" ) {
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
