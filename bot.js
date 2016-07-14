@@ -9,19 +9,19 @@ function spaceCalc(sbheader, header, obj) {
   return Array(num+1).join('\u00A0');
 }
 
-function getScoreboard(lols, darns) {
-    console.log('getScoreboard called');
-    var scoreboardHead = "-------------SCOREBOARD-------------";
-    var totalLols = "TOTAL LOLS:";
-    var totalDarns = "TOTAL DARNS:";
-    var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
-    var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
-    var lolLine = totalLols + lolspaces + lols;
-    var darnLine = totalDarns + darnspaces + darns;
-    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since July 13 2016---------";
-    console.log('Scoreboard is: ', scoreboard);
-    return scoreboard;
-}
+// function getScoreboard(lols, darns) {
+//     console.log('getScoreboard called');
+//     var scoreboardHead = "-------------SCOREBOARD-------------";
+//     var totalLols = "TOTAL LOLS:";
+//     var totalDarns = "TOTAL DARNS:";
+//     var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
+//     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
+//     var lolLine = totalLols + lolspaces + lols;
+//     var darnLine = totalDarns + darnspaces + darns;
+//     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since July 13 2016---------";
+//     console.log('Scoreboard is: ', scoreboard);
+//     return scoreboard;
+// }
 
 // function scoreboard(forParse, resp) {
 //   var lolTrigger = /(lol|\blol)/ig;
