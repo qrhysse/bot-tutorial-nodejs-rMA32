@@ -24,39 +24,39 @@ function getScoreboard(lols, darns) {
 }
 
 function scoreboard(forParse, resp) {
-  // var lolTrigger = /(lol|\blol)/ig;
-  // var darnTrigger = /(darn|\bdarn)/ig;
+  var lolTrigger = /(lol|\blol)/ig;
+  var darnTrigger = /(darn|\bdarn)/ig;
   var botRegexScoreboard = /\/scoreboard/i;
   var request = require('request');
   var jsonObj, lolCount, darnCount, returnval = 0;
   var count = 0;
 
-  // request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     var jsonObj = JSON.parse(body);
-  //     var lolCount = jsonObj.lols;
-  //     var darnCount = jsonObj.darns;
-  //     if( forParse && botRegexScoreboard.test(forParse)) {
-  //       returnval = getScoreboard(lolCount, darnCount);
-  //       resp.res.writeHead(200);
-  //       postMessage(returnval, false);
-  //       resp.res.end();
-  //     } else {
-  //       if( lolTrigger.test(forParse)) {
-  //         count = (forParse.match(lolTrigger) || []).length;
-  //         lolCount += count;
-  //       }
-  //       if( darnTrigger.test(forParse)) {
-  //         count = (forParse.match(darnTrigger) || []).length;
-  //         darnCount += count;
-  //       }
-  //       request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
-  //       returnval = 0;
-  //     }
-  //   } else {
-  //     returnval = 0;
-  //   }
-  // });
+  request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var jsonObj = JSON.parse(body);
+      var lolCount = jsonObj.lols;
+      var darnCount = jsonObj.darns;
+      if( forParse && botRegexScoreboard.test(forParse)) {
+        returnval = getScoreboard(lolCount, darnCount);
+        resp.res.writeHead(200);
+        postMessage(returnval, false);
+        resp.res.end();
+      } else {
+        if( lolTrigger.test(forParse)) {
+          count = (forParse.match(lolTrigger) || []).length;
+          lolCount += count;
+        }
+        if( darnTrigger.test(forParse)) {
+          count = (forParse.match(darnTrigger) || []).length;
+          darnCount += count;
+        }
+        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+        returnval = 0;
+      }
+    } else {
+      returnval = 0;
+    }
+  });
 }
 
 function respond() { 
