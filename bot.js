@@ -176,7 +176,7 @@ function respond() {
       this.res.end();
 
       this.res.writeHead(200);
-      setTimeout(postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false){}, 3000);
+      setTimeout(function(){postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false); }, 3000);
       this.res.end();
     }
   }
