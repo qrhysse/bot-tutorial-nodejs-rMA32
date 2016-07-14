@@ -69,6 +69,7 @@ function respond() {
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
+  var botRegexChina = /(^china$|\bchina[^a-z]?)/i;
   var sbPost;
   // var lolTrigger = /(lol|\blol)/ig;
   // var darnTrigger = /(darn|\bdarn)/ig;
@@ -166,6 +167,12 @@ function respond() {
     if(request.text && botRegexRip.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://s31.postimg.org/pjuh7qfxn/RIP.jpg", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexChina.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://s32.postimg.org/s65wi0yed/china.png", false);
       this.res.end();
     }
 
