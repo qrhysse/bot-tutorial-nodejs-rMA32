@@ -9,55 +9,55 @@ function spaceCalc(sbheader, header, obj) {
   return Array(num+1).join('\u00A0');
 }
 
-// function getScoreboard(lols, darns) {
-//     console.log('getScoreboard called');
-//     var scoreboardHead = "-------------SCOREBOARD-------------";
-//     var totalLols = "TOTAL LOLS:";
-//     var totalDarns = "TOTAL DARNS:";
-//     var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
-//     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
-//     var lolLine = totalLols + lolspaces + lols;
-//     var darnLine = totalDarns + darnspaces + darns;
-//     var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since July 13 2016---------";
-//     console.log('Scoreboard is: ', scoreboard);
-//     return scoreboard;
-// }
+function getScoreboard(lols, darns) {
+    console.log('getScoreboard called');
+    var scoreboardHead = "-------------SCOREBOARD-------------";
+    var totalLols = "TOTAL LOLS:";
+    var totalDarns = "TOTAL DARNS:";
+    var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
+    var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
+    var lolLine = totalLols + lolspaces + lols;
+    var darnLine = totalDarns + darnspaces + darns;
+    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since July 13 2016---------";
+    console.log('Scoreboard is: ', scoreboard);
+    return scoreboard;
+}
 
-// function scoreboard(forParse, resp) {
-//   var lolTrigger = /(lol|\blol)/ig;
-//   var darnTrigger = /(darn|\bdarn)/ig;
-//   var botRegexScoreboard = /\/scoreboard/i;
-//   var request = require('request');
-//   var jsonObj, lolCount, darnCount, returnval = 0;
-//   var count = 0;
+function scoreboard(forParse, resp) {
+  // var lolTrigger = /(lol|\blol)/ig;
+  // var darnTrigger = /(darn|\bdarn)/ig;
+  var botRegexScoreboard = /\/scoreboard/i;
+  var request = require('request');
+  var jsonObj, lolCount, darnCount, returnval = 0;
+  var count = 0;
 
-//   request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       var jsonObj = JSON.parse(body);
-//       var lolCount = jsonObj.lols;
-//       var darnCount = jsonObj.darns;
-//       if( forParse && botRegexScoreboard.test(forParse)) {
-//         returnval = getScoreboard(lolCount, darnCount);
-//         resp.res.writeHead(200);
-//         postMessage(returnval, false);
-//         resp.res.end();
-//       } else {
-//         if( lolTrigger.test(forParse)) {
-//           count = (forParse.match(lolTrigger) || []).length;
-//           lolCount += count;
-//         }
-//         if( darnTrigger.test(forParse)) {
-//           count = (forParse.match(darnTrigger) || []).length;
-//           darnCount += count;
-//         }
-//         request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
-//         returnval = 0;
-//       }
-//     } else {
-//       returnval = 0;
-//     }
-//   });
-// }
+  request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var jsonObj = JSON.parse(body);
+      var lolCount = jsonObj.lols;
+      var darnCount = jsonObj.darns;
+      if( forParse && botRegexScoreboard.test(forParse)) {
+        returnval = getScoreboard(lolCount, darnCount);
+        resp.res.writeHead(200);
+        postMessage(returnval, false);
+        resp.res.end();
+      } else {
+        if( lolTrigger.test(forParse)) {
+          count = (forParse.match(lolTrigger) || []).length;
+          lolCount += count;
+        }
+        if( darnTrigger.test(forParse)) {
+          count = (forParse.match(darnTrigger) || []).length;
+          darnCount += count;
+        }
+        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+        returnval = 0;
+      }
+    } else {
+      returnval = 0;
+    }
+  });
+}
 
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
@@ -174,23 +174,6 @@ function respond() {
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
-      
-      // this.res.writeHead(200);
-      // postMessage("Did somebody say skeleton?", false);
-      // this.res.end();
-
-      // setTimeout(function(thing){
-      // thing.res.writeHead(200);
-      // postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
-      // thing.res.end();
-      // }(this), 10000);
-      
-      // setTimeout(function(thing){
-      // thing.res.writeHead(200);
-      // postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
-      // thing.res.end();
-      // }(this), 200000);
-      
     }
   }
 }
