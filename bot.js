@@ -175,9 +175,9 @@ function respond() {
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
 
-      setTimeout(function(){thing.res.writeHead(200);
+      setTimeout(function(){this.res.writeHead(200);
       postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false);
-      thing.res.end(); }, 3000);
+      this.res.end(); }, 3000);
     }
   }
 }
