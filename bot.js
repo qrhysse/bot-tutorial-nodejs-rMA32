@@ -24,44 +24,44 @@ function getScoreboard(lols, darns) {
 }
 
 function scoreboard(forParse, resp) {
-  var lolTrigger = /(lol|\blol)/ig;
-  var darnTrigger = /(darn|\bdarn)/ig;
+  // var lolTrigger = /(lol|\blol)/ig;
+  // var darnTrigger = /(darn|\bdarn)/ig;
   var botRegexScoreboard = /\/scoreboard/i;
   var request = require('request');
   var jsonObj, lolCount, darnCount, returnval = 0;
   var count = 0;
 
-  request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var jsonObj = JSON.parse(body);
-      var lolCount = jsonObj.lols;
-      var darnCount = jsonObj.darns;
-      if( forParse && botRegexScoreboard.test(forParse)) {
-        returnval = getScoreboard(lolCount, darnCount);
-        resp.res.writeHead(200);
-        postMessage(returnval, false);
-        resp.res.end();
-      } else {
-        if( lolTrigger.test(forParse)) {
-          count = (forParse.match(lolTrigger) || []).length;
-          lolCount += count;
-        }
-        if( darnTrigger.test(forParse)) {
-          count = (forParse.match(darnTrigger) || []).length;
-          darnCount += count;
-        }
-        request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
-        returnval = 0;
-      }
-    } else {
-      returnval = 0;
-    }
-  });
+  // request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+  //   if (!error && response.statusCode == 200) {
+  //     var jsonObj = JSON.parse(body);
+  //     var lolCount = jsonObj.lols;
+  //     var darnCount = jsonObj.darns;
+  //     if( forParse && botRegexScoreboard.test(forParse)) {
+  //       returnval = getScoreboard(lolCount, darnCount);
+  //       resp.res.writeHead(200);
+  //       postMessage(returnval, false);
+  //       resp.res.end();
+  //     } else {
+  //       if( lolTrigger.test(forParse)) {
+  //         count = (forParse.match(lolTrigger) || []).length;
+  //         lolCount += count;
+  //       }
+  //       if( darnTrigger.test(forParse)) {
+  //         count = (forParse.match(darnTrigger) || []).length;
+  //         darnCount += count;
+  //       }
+  //       request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+  //       returnval = 0;
+  //     }
+  //   } else {
+  //     returnval = 0;
+  //   }
+  // });
 }
 
 function respond() { 
   var request = JSON.parse(this.req.chunks[0]);
-  var botRegexsts = /Dr. Q, status(!|.)?/i;
+  var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
   var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
@@ -81,7 +81,7 @@ function respond() {
   // console.log(loldarnCount);
   console.log(request);    
   
-  if( request.name !== "Dr. Q" ) {
+  if( request.name !== "JokeyBot" ) {
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
@@ -174,23 +174,10 @@ function respond() {
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
-      
-      // this.res.writeHead(200);
-      // postMessage("Did somebody say skeleton?", false);
-      // this.res.end();
 
-      // setTimeout(function(thing){
-      // thing.res.writeHead(200);
-      // postMessage("https://s31.postimg.org/gzpyios4b/Mrbones1.png", false);
-      // thing.res.end();
-      // }(this), 10000);
-      
-      // setTimeout(function(thing){
-      // thing.res.writeHead(200);
-      // postMessage("https://s32.postimg.org/gen34js5x/Mrbones1_2.png", false);
-      // thing.res.end();
-      // }(this), 200000);
-      
+      this.res.writeHead(200);
+      setTimeout(function(){postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false); }, 3000);
+      this.res.end();
     }
   }
 }
