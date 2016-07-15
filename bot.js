@@ -9,7 +9,7 @@ function spaceCalc(sbheader, header, obj) {
   return Array(num+1).join('\u00A0');
 }
 
-function getScoreboard(lols, darns) {
+function getScoreboard(lols, darns, date) {
     console.log('getScoreboard called');
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
@@ -18,7 +18,7 @@ function getScoreboard(lols, darns) {
     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
     var lolLine = totalLols + lolspaces + lols;
     var darnLine = totalDarns + darnspaces + darns;
-    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since July 13 2016---------";
+    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since "+date+"---------";
     console.log('Scoreboard is: ', scoreboard);
     return scoreboard;
 }
@@ -29,7 +29,7 @@ function scoreboard(forParse, resp) {
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
     var request = require('request');
-    var jsonObj, lolCount, darnCount, returnval = 0;
+    var jsonObj, lolCount, darnCount, currentDate, returnval = 0;
     var count = 0;
 
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
@@ -37,8 +37,9 @@ function scoreboard(forParse, resp) {
         var jsonObj = JSON.parse(body);
         var lolCount = jsonObj.lols;
         var darnCount = jsonObj.darns;
+        var currentDate = jsonObj.date;
         if( forParse.text && botRegexScoreboard.test(forParse.text)) {
-          returnval = getScoreboard(lolCount, darnCount);
+          returnval = getScoreboard(lolCount, darnCount, currentDate);
           resp.res.writeHead(200);
           postMessage(returnval, false);
           resp.res.end();
@@ -51,7 +52,7 @@ function scoreboard(forParse, resp) {
             count = (forParse.text.match(darnTrigger) || []).length;
             darnCount += count;
           }
-          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount}});
+          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
           returnval = 0;
         }
       } else {
