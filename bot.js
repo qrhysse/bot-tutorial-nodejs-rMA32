@@ -80,8 +80,8 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
-  var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/;
-  var botRegexGirl = /(\b?this girl|\b?a girl)/;
+  var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/i;
+  var botRegexGirl = /(\b?this girl|\b?a girl)/i;
   
   console.log(request);    
   
