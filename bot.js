@@ -9,6 +9,11 @@ function spaceCalc(sbheader, header, obj) {
   return Array(num+1).join('\u00A0');
 }
 
+<<<<<<< HEAD
+=======
+//pointless test change
+
+>>>>>>> refs/remotes/origin/master
 function getScoreboard(lols, darns, date) {
     console.log('getScoreboard called');
     var scoreboardHead = "-------------SCOREBOARD-------------";
@@ -80,8 +85,13 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
+<<<<<<< HEAD
   var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/i;
   var botRegexGirl = /(\b?this girl|\b?a girl)/i;
+=======
+  var botRegexSquirtle = /squirtle/i;
+  var botRegexGirl = /(\s*this girl|\s*a girl)/i;
+>>>>>>> refs/remotes/origin/master
   
   console.log(request);    
   
@@ -201,6 +211,19 @@ function respond() {
       setTimeout(function(){postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false); }, 3000);
       this.res.end();
     }
+
+    if(request.text && botRegexSquirtle.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("You mean the squirrel turtle?", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexGirl.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Was she hot?", false);
+      this.res.end();
+    }
+
   }
 }
 
