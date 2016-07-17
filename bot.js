@@ -67,7 +67,7 @@ function respond() {
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
-  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
+  var botRegexDad = /(^dads?$|\bdads?[^a-z]?)/i;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
@@ -80,6 +80,8 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
+  var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/;
+  var botRegexGirl = /(\b?this girl|\b?a girl)/;
   
   console.log(request);    
   
@@ -177,8 +179,20 @@ function respond() {
       this.res.end();
     }
 
+    if(request.text && botRegexSquirtle.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("You mean the squirrel turtle?", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexGirl.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Was she hot?", false);
+      this.res.end();
+    }
+
     if( request.text && botRegexSkeleton.test(request.text)) {
-      console.log("Skeleton activated.");
+      console.log("Skquirtle activated.");
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
