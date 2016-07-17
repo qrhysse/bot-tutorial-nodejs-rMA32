@@ -3,17 +3,14 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
-// Non-breaking spaces save the day!
+// Non-breaking spaces save the day
 function spaceCalc(sbheader, header, obj) {
   var num = sbheader.length - (String(obj).length + header.length);
   return Array(num+1).join('\u00A0');
 }
 
-<<<<<<< HEAD
-=======
 //pointless test change
 
->>>>>>> refs/remotes/origin/master
 function getScoreboard(lols, darns, date) {
     console.log('getScoreboard called');
     var scoreboardHead = "-------------SCOREBOARD-------------";
@@ -72,7 +69,7 @@ function respond() {
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
-  var botRegexDad = /(^dads?$|\bdads?[^a-z]?)/i;
+  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
@@ -85,13 +82,8 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
-<<<<<<< HEAD
-  var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/i;
-  var botRegexGirl = /(\b?this girl|\b?a girl)/i;
-=======
   var botRegexSquirtle = /squirtle/i;
   var botRegexGirl = /(\s*this girl|\s*a girl)/i;
->>>>>>> refs/remotes/origin/master
   
   console.log(request);    
   
@@ -189,20 +181,8 @@ function respond() {
       this.res.end();
     }
 
-    if(request.text && botRegexSquirtle.test(request.text)) {
-      this.res.writeHead(200);
-      postMessage("You mean the squirrel turtle?", false);
-      this.res.end();
-    }
-
-    if(request.text && botRegexGirl.test(request.text)) {
-      this.res.writeHead(200);
-      postMessage("Was she hot?", false);
-      this.res.end();
-    }
-
     if( request.text && botRegexSkeleton.test(request.text)) {
-      console.log("Skquirtle activated.");
+      console.log("Skeleton activated.");
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
