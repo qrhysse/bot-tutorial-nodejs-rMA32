@@ -26,6 +26,7 @@ var scoreboard = function (forParse, resp) {
   var botRegexScoreboard = /\/scoreboard/i;
   var request = require('request');
   var jsonObj, lolCount, darnCount, currentDate, returnval = 0;
+  var finalReturnVal;
   var count = 0;
 
   request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
@@ -36,9 +37,10 @@ var scoreboard = function (forParse, resp) {
       var currentDate = jsonObj.date;
       if( forParse.text && botRegexScoreboard.test(forParse.text)) {
         returnval = getScoreboard(lolCount, darnCount, currentDate);
-        resp.res.writeHead(200);
+        /*resp.res.writeHead(200);
         postMessage(returnval, false);
-        resp.res.end();
+        resp.res.end();*/
+        setTimeout(function(){ finalReturnVal = returnval; }, 3000);
       } else {
         if( forParse.group_id !== '23073839' ) {
           if( lolTrigger.test(forParse.text)) {
@@ -57,6 +59,7 @@ var scoreboard = function (forParse, resp) {
       returnval = 0;
     }
   });
+  return finalReturnVal;
 }
 
 module.exports = {

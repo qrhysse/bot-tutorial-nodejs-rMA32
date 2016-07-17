@@ -34,7 +34,12 @@ function respond() {
       this.res.end();
     }
 
-    scoreboard.scoreboard( request, this );
+    sbPost = scoreboard.scoreboard( request, this );
+    if( typeof sbPost !== 'undefined' ) {
+      this.res.writeHead(200);
+      postMessage(sbPost, false);
+      this.res.end();
+    }
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
