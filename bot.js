@@ -82,6 +82,8 @@ function respond() {
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
+  var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/i;
+  var botRegexGirl = /(\b?this girl|\b?a girl)/i;
   
   console.log(request);    
   
@@ -184,6 +186,18 @@ function respond() {
       this.res.writeHead(200);
       postMessage("Did somebody say skeleton?", false);
       this.res.end();
+
+    if(request.text && botRegexSquirtle.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("You mean the squirrel turtle?", false);
+      this.res.end();
+    }
+
+    if(request.text && botRegexGirl.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Was she hot?", false);
+      this.res.end();
+    }
 
       this.res.writeHead(200);
       setTimeout(function(){postMessage("https://s32.postimg.org/k40mfptk5/Mrbones1_3.png", false); }, 3000);
