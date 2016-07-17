@@ -9,6 +9,8 @@ function spaceCalc(sbheader, header, obj) {
   return Array(num+1).join('\u00A0');
 }
 
+//pointless test change
+
 function getScoreboard(lols, darns, date) {
     console.log('getScoreboard called');
     var scoreboardHead = "-------------SCOREBOARD-------------";
