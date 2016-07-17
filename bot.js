@@ -83,7 +83,7 @@ function respond() {
   var botRegexDadJoke = /\bi'?m\s+/i;
   var botRegexThbby = /\?\s*$/i;
   var botRegexSquirtle = /(^squirtles?$|\bsquirtles?[^a-z]?)/i;
-  var botRegexGirl = /(\b?this girl|\b?a girl)/i;
+  var botRegexGirl = /(\s*this girl|\s*a girl)/i;
   
   console.log(request);    
   
