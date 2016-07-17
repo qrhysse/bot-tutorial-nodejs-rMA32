@@ -41,13 +41,15 @@ var scoreboard = function (forParse, resp) {
           postMessage(returnval, false);
           resp.res.end();
         } else {
-          if( lolTrigger.test(forParse.text)) {
-            count = (forParse.text.match(lolTrigger) || []).length;
-            lolCount += count;
-          }
-          if( darnTrigger.test(forParse.text)) {
-            count = (forParse.text.match(darnTrigger) || []).length;
-            darnCount += count;
+          if( forParse.group_id !== '23073839' ) {
+            if( lolTrigger.test(forParse.text)) {
+              count = (forParse.text.match(lolTrigger) || []).length;
+              lolCount += count;
+            }
+            if( darnTrigger.test(forParse.text)) {
+              count = (forParse.text.match(darnTrigger) || []).length;
+              darnCount += count;
+            }
           }
           request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
           returnval = 0;
