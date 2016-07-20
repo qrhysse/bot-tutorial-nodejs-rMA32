@@ -81,7 +81,7 @@ function respond() {
   var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   var botRegexDadJoke = /\bi'?m\s+/i;
-  var botRegexThbby = /\?\s*$/i;
+  // var botRegexThbby = /\?\s*$/i;
   var botRegexSquirtle = /squirtle/i;
   var botRegexGirl = /(\s*this girl|\s*a girl)/i;
   
@@ -98,7 +98,7 @@ function respond() {
     
     if(request.text && botRegexBio.test(request.text)) {
       var link = request.text;
-      link = link.replace(/from a biological (perspective|standpoint),?/i, "");
+      link = link.replace(/.*?from a biological (perspective|standpoint),?/i, "");
       link = link.replace(/ /g, "+");
       link = link.replace("%", "%25");
 
@@ -113,12 +113,12 @@ function respond() {
       this.res.end();
     }
 
-    if( request.text && botRegexThbby.test(request.text)) {
-      console.log("Thbby activated.");
-      this.res.writeHead(200);
-      postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
-      this.res.end();
-    }
+    // if( request.text && botRegexThbby.test(request.text)) {
+    //   console.log("Thbby activated.");
+    //   this.res.writeHead(200);
+    //   postMessage("https://s32.postimg.org/l9cjr1411/idk.jpg", false);
+    //   this.res.end();
+    // }
 
     if(request.text && botRegexDadJoke.test(request.text)) {
       var content = request.text;
