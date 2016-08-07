@@ -206,13 +206,13 @@ function respond() {
   } else {
     var messageID = request.id;
     var groupID = request.group_id;
-    var pathString = '/v3/bots/post/messages/' + groupID + '/' + messageID + '/like'
+    //var pathString = '/v3/bots/post/messages/' + groupID + '/' + messageID + '/like'
     this.res.writeHead(200);
     options = {
       hostname: 'api.groupme.com',
       path: '/v3/bots/post',
       method: 'POST'
-    }
+    };
     body = {
       "bot_id" : botID,
       "group_id" : groupID,
