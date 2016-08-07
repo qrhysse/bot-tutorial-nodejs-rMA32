@@ -206,7 +206,8 @@ function respond() {
   } else {
     var messageID = request.id;
     var groupID = request.group_id;
-    var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like'
+    var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like';
+    console.log(pathString);
     this.res.writeHead(200);
     options = {
       hostname: 'api.groupme.com',
@@ -222,7 +223,7 @@ function respond() {
       if(res.statusCode == 200) {
         console.log("nice!");
       } else {
-        console.log('rejected bad status code ' + JSON.stringify(res));
+        console.log('rejected bad status code ' + res.statusCode;
       }
     })
     botLike.on('error', function(err) {
