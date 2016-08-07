@@ -206,7 +206,7 @@ function respond() {
   } else {
     var messageID = request.id;
     var groupID = request.group_id;
-    var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like';
+    var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like?token=kozDsCbi7g84BjWqHJWh4WxBwuwEvgEHBjyzbW7K';
     console.log(pathString);
     this.res.writeHead(200);
     options = {
