@@ -94,7 +94,7 @@ function scoreboard(forParse, resp) {
   }
 }
 
-function respond() { 
+function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
@@ -238,7 +238,6 @@ function respond() {
       this.res.writeHead(200);
       gusLieksEverthang(request);
       this.res.end();
-    }
   }
 }
 
