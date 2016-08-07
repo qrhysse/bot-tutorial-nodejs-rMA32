@@ -119,10 +119,6 @@ function respond() {
   
   if( request.name !== "JokeyBot" ) {
     
-    this.res.writeHead(200);
-    gusLieksEverthang(request);
-    this.res.end();
-    
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
@@ -236,6 +232,11 @@ function respond() {
     if(request.text && botRegexGirl.test(request.text)) {
       this.res.writeHead(200);
       postMessage("Was she hot?", false);
+      this.res.end();
+    }
+  } else {    
+      this.res.writeHead(200);
+      gusLieksEverthang(request);
       this.res.end();
     }
   }
