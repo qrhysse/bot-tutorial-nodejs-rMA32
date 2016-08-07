@@ -64,7 +64,7 @@ function scoreboard(forParse, resp) {
   }
 }
 
-function respond() { 
+function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
@@ -203,7 +203,29 @@ function respond() {
       postMessage("Was she hot?", false);
       this.res.end();
     }
-
+  } else {
+    var messageID = request.id;
+    var groupID = request.group_id;
+    var pathString = '/v3/bots/post/messages/' + groupID + '/' + messageID + '/like'
+    options = {
+      hostname: 'api.groupme.com',
+      path: pathString,
+      method: 'POST'
+    }
+    var botLike = HTTPS.request(options, function(res) {
+      if(res.statusCode == 200) {
+        console.log("nice!");
+      } else {
+        console.log('rejected bad status code ' + res.statusCode);
+      }
+    })
+    botLike.on('error', function(err) {
+      console.log('error posting message '  + JSON.stringify(err));
+    });
+    botLike.on('timeout', function(err) {
+      console.log('timeout posting message '  + JSON.stringify(err));
+    });
+    botLike.end(JSON.stringify(body));
   }
 }
 
