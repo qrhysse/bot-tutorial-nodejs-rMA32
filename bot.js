@@ -117,11 +117,12 @@ function respond() {
   
   console.log(request);    
   
-  this.res.writeHead(200);
-  gusLieksEverthang(request);
-  this.res.end();
-  
   if( request.name !== "JokeyBot" ) {
+    
+    this.res.writeHead(200);
+    gusLieksEverthang(request);
+    this.res.end();
+    
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
