@@ -210,7 +210,7 @@ function respond() {
     this.res.writeHead(200);
     options = {
       hostname: 'api.groupme.com',
-      path: '/v3/bots/post/',
+      path: pathString,
       method: 'POST'
     }
     body = {
