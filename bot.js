@@ -209,7 +209,7 @@ function respond() {
     var pathString = '/v3/bots/post/messages/' + groupID + '/' + messageID + '/like'
     options = {
       hostname: 'api.groupme.com',
-      path: pathString,
+      path: '/v3/bots/post/messages/',
       method: 'POST'
     }
     body = {
