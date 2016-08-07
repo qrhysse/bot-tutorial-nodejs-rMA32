@@ -223,7 +223,7 @@ function respond() {
       if(res.statusCode == 200) {
         console.log("nice!");
       } else {
-        console.log('rejected bad status code ' + res.statusCode;
+        console.log('rejected bad status code ' + res.statusCode);
       }
     })
     botLike.on('error', function(err) {
