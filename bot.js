@@ -212,6 +212,10 @@ function respond() {
       path: pathString,
       method: 'POST'
     }
+    body = {
+      "bot_id" : botID,
+      "text" : botResponse
+    };
     var botLike = HTTPS.request(options, function(res) {
       if(res.statusCode == 200) {
         console.log("nice!");
