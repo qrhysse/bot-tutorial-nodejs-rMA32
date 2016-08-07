@@ -3,6 +3,36 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
+// GUS LIEKS EVERTHANG
+function gusLieksEverthang(request) {
+  var messageID = request.id;
+  var groupID = request.group_id;
+  var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like?token=kozDsCbi7g84BjWqHJWh4WxBwuwEvgEHBjyzbW7K';
+  console.log(pathString);
+  options = {
+    hostname: 'api.groupme.com',
+    path: pathString,
+    method: 'POST'
+  };
+  body = {
+    "bot_id" : botID
+  };
+  var botLike = HTTPS.request(options, function(res) {
+    if(res.statusCode == 200) {
+      console.log("nice!");
+    } else {
+      console.log('rejected bad status code ' + res.statusCode);
+    }
+  })
+  botLike.on('error', function(err) {
+    console.log('error posting message '  + JSON.stringify(err));
+  });
+  botLike.on('timeout', function(err) {
+    console.log('timeout posting message '  + JSON.stringify(err));
+  });
+  botLike.end(JSON.stringify(body));
+}
+
 // Non-breaking spaces save the day
 function spaceCalc(sbheader, header, obj) {
   var num = sbheader.length - (String(obj).length + header.length);
@@ -86,6 +116,10 @@ function respond() {
   var botRegexGirl = /(\s*this girl|\s*a girl)/i;
   
   console.log(request);    
+  
+  this.res.writeHead(200);
+  gusLieksEverthang(request);
+  this.res.end();
   
   if( request.name !== "JokeyBot" ) {
     if(request.text && botRegexsts.test(request.text)) {
@@ -203,7 +237,6 @@ function respond() {
       postMessage("Was she hot?", false);
       this.res.end();
     }
-
   }
 }
 
