@@ -210,7 +210,7 @@ function respond() {
     this.res.writeHead(200);
     options = {
       hostname: 'api.groupme.com',
-      path: '/v3/messages/',
+      path: pathString,
       method: 'POST'
     };
     body = {
@@ -222,7 +222,7 @@ function respond() {
       if(res.statusCode == 200) {
         console.log("nice!");
       } else {
-        console.log('rejected bad status code ' + res);
+        console.log('rejected bad status code ' + JSON.stringify(res));
       }
     })
     botLike.on('error', function(err) {
