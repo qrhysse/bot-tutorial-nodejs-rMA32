@@ -214,7 +214,8 @@ function respond() {
     }
     body = {
       "bot_id" : botID,
-      "text" : botResponse
+      "group_id" : groupID,
+      "id" : messageID
     };
     var botLike = HTTPS.request(options, function(res) {
       if(res.statusCode == 200) {
