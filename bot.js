@@ -207,6 +207,7 @@ function respond() {
     var messageID = request.id;
     var groupID = request.group_id;
     var pathString = '/v3/bots/post/messages/' + groupID + '/' + messageID + '/like'
+    this.res.writeHead(200);
     options = {
       hostname: 'api.groupme.com',
       path: '/v3/bots/post/messages/',
@@ -231,6 +232,7 @@ function respond() {
       console.log('timeout posting message '  + JSON.stringify(err));
     });
     botLike.end(JSON.stringify(body));
+    this.res.end();
   }
 }
 
