@@ -80,7 +80,7 @@ function respond() {
   var darnTrigger = /(darn|\bdarn)/ig;
   var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
-  var botRegexDadJoke = /\bi'?m\s+/i;
+  //var botRegexDadJoke = /\bi'?m\s+/i;
   // var botRegexThbby = /\?\s*$/i;
   var botRegexSquirtle = /squirtle/i;
   var botRegexGirl = /(\s*this girl|\s*a girl)/i;
