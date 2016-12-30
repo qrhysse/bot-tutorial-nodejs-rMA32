@@ -189,7 +189,7 @@ function respond() {
       this.res.end();
     }
     
-    if( request.text && botRegexTrade.text(request.text)) {
+    if( request.text && botRegexTrade.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://docs.google.com/spreadsheets/d/113_RlWreOAiv1rz4l5dwT0vkkhg7BiPOwgR2i9CIdPo/edit#gid=0", false);
       this.res.end();
