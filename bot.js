@@ -96,6 +96,7 @@ function scoreboard(forParse, resp) {
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
+  var botRegexTrade = /\/trade/i;
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
@@ -185,6 +186,12 @@ function respond() {
     if( request.text && botRegexAlex.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
+      this.res.end();
+    }
+    
+    if( request.text && botRegexTrade.text(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://docs.google.com/spreadsheets/d/113_RlWreOAiv1rz4l5dwT0vkkhg7BiPOwgR2i9CIdPo/edit#gid=0", false);
       this.res.end();
     }
     
