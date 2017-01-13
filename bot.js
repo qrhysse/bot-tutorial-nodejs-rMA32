@@ -67,6 +67,7 @@ function scoreboard(forParse, resp) {
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexTrade = /\/trade/i;
+  var botRegexNice  = /\/nice/i;
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
@@ -107,6 +108,12 @@ function respond() {
       postMessage("https://www.google.com/#safe=off&q="+link, true);
       this.res.end();
     } 
+    
+    if(request.text && botRegexNice.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://i.groupme.com/200x200.gif.6d4b4552111c4c599d3add51dd98a1e6.large", false);
+      this.res.end();
+    }
     
     if(request.text && botRegexWee.test(request.text)) {
       this.res.writeHead(200);
