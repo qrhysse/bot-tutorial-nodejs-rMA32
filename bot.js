@@ -90,6 +90,15 @@ function respond() {
   console.log(request);    
   
   if( request.name !== "JokeyBot" ) {
+    
+    var twoAM = new Date().setHours(2, 0, 0, 0).getTime();
+    var sixAM = new Date().setHours(6, 0, 0, 0).getTime();
+    if( (request.created_at < sixAM)&&(request.created_at > twoAM) ) {
+      this.res.writeHead(200);
+      postMessage("https://www.youtube.com/watch?v=6-HjtRGIcog", true);
+      this.res.end();
+    }
+    
     if(request.text && botRegexsts.test(request.text)) {
       this.res.writeHead(200);
       postMessage(cool(), false);
