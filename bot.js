@@ -126,8 +126,8 @@ function respond() {
       this.res.end();
     }
     
-    var twoAM = new Date().setHours(2, 0, 0, 0);
-    var sixAM = new Date().setHours(6, 0, 0, 0);
+    var twoAM = new Date().setHours(6, 0, 0, 0);
+    var sixAM = new Date().setHours(10, 0, 0, 0);
     var rcaMS = request.created_at*1000;
     console.log("It is currently " + rcaMS + ". Two AM is at " + twoAM + " and six AM is at " + sixAM + ".");
     if( (rcaMS < sixAM)&&(rcaMS > twoAM) ) {
