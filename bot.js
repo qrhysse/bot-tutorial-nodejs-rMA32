@@ -92,11 +92,14 @@ function respond() {
   if( request.name !== "JokeyBot" ) {
     
     var twoAM = new Date().setHours(2, 0, 0, 0).getTime();
-    var sixAM = new Date().setHours(6, 0, 0, 0).getTime();
+    var sixAM = new Date().setHours(6, 0, 0, 0).getTime()
     if( (request.created_at < sixAM)&&(request.created_at > twoAM) ) {
+      console.log("It is very early in the morning.");
       this.res.writeHead(200);
       postMessage("https://www.youtube.com/watch?v=6-HjtRGIcog", true);
       this.res.end();
+    } else {
+      console.log("it is not very early in the morning.");
     }
     
     if(request.text && botRegexsts.test(request.text)) {
