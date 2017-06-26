@@ -3,36 +3,6 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
-// GUS LIEKS EVERTHANG
-function gusLieksEverthang(request) {
-  var messageID = request.id;
-  var groupID = request.group_id;
-  var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like?token=kozDsCbi7g84BjWqHJWh4WxBwuwEvgEHBjyzbW7K';
-  console.log(pathString);
-  options = {
-    hostname: 'api.groupme.com',
-    path: pathString,
-    method: 'POST'
-  };
-  body = {
-    "bot_id" : botID
-  };
-  var botLike = HTTPS.request(options, function(res) {
-    if(res.statusCode == 200) {
-      console.log("nice!");
-    } else {
-      console.log('rejected bad status code ' + res.statusCode);
-    }
-  })
-  botLike.on('error', function(err) {
-    console.log('error posting message '  + JSON.stringify(err));
-  });
-  botLike.on('timeout', function(err) {
-    console.log('timeout posting message '  + JSON.stringify(err));
-  });
-  botLike.end(JSON.stringify(body));
-}
-
 // Non-breaking spaces save the day
 function spaceCalc(sbheader, header, obj) {
   var num = sbheader.length - (String(obj).length + header.length);
@@ -97,6 +67,7 @@ function scoreboard(forParse, resp) {
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegexTrade = /\/trade/i;
+  var botRegexNice  = /\/nice/i;
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
@@ -106,6 +77,7 @@ function respond() {
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
   var botRegexChina = /(^china$|\bchina[^a-z]?)/i;
+  var botRegexBolas = /(^bolas$|\bbolas[^a-z]?)/i;
   var sbPost;
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
@@ -120,23 +92,21 @@ function respond() {
   
   if( request.name !== "JokeyBot" ) {
     
-    if(request.text && botRegexsts.test(request.text)) {
-      this.res.writeHead(200);
-      postMessage(cool(), false);
-      this.res.end();
-    }
-    
     var twoAM = new Date().setHours(6, 0, 0, 0);
     var sixAM = new Date().setHours(10, 0, 0, 0);
-    var rcaMS = request.created_at*1000;
-    console.log("It is currently " + rcaMS + ". Two AM is at " + twoAM + " and six AM is at " + sixAM + ".");
-    if( (rcaMS < sixAM)&&(rcaMS > twoAM) ) {
+    if( (request.created_at < sixAM)&&(request.created_at > twoAM) ) {
       console.log("It is very early in the morning.");
       this.res.writeHead(200);
       postMessage("https://www.youtube.com/watch?v=6-HjtRGIcog", true);
       this.res.end();
     } else {
       console.log("it is not very early in the morning.");
+    }
+    
+    if(request.text && botRegexsts.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage(cool(), false);
+      this.res.end();
     }
 
     scoreboard( request, this );
@@ -151,6 +121,12 @@ function respond() {
       postMessage("https://www.google.com/#safe=off&q="+link, true);
       this.res.end();
     } 
+    
+    if(request.text && botRegexNice.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("https://i.groupme.com/200x200.gif.6d4b4552111c4c599d3add51dd98a1e6.large", false);
+      this.res.end();
+    }
     
     if(request.text && botRegexWee.test(request.text)) {
       this.res.writeHead(200);
@@ -254,10 +230,40 @@ function respond() {
       postMessage("Was she hot?", false);
       this.res.end();
     }
-  } else {    
+    if(request.text && botRegexBolas.test(request.text)) {
       this.res.writeHead(200);
-      gusLieksEverthang(request);
+      postMessage("May His return come quickly and may we be found worthy.", false);
       this.res.end();
+    }
+  } else {
+    var messageID = request.id;
+    var groupID = request.group_id;
+    var pathString = '/v3/messages/' + groupID + '/' + messageID + '/like?token=kozDsCbi7g84BjWqHJWh4WxBwuwEvgEHBjyzbW7K';
+    console.log(pathString);
+    this.res.writeHead(200);
+    options = {
+      hostname: 'api.groupme.com',
+      path: pathString,
+      method: 'POST'
+    };
+    body = {
+      "bot_id" : botID
+    };
+    var botLike = HTTPS.request(options, function(res) {
+      if(res.statusCode == 200) {
+        console.log("nice!");
+      } else {
+        console.log('rejected bad status code ' + res.statusCode);
+      }
+    })
+    botLike.on('error', function(err) {
+      console.log('error posting message '  + JSON.stringify(err));
+    });
+    botLike.on('timeout', function(err) {
+      console.log('timeout posting message '  + JSON.stringify(err));
+    });
+    botLike.end(JSON.stringify(body));
+    this.res.end();
   }
 }
 
