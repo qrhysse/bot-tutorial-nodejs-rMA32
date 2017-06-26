@@ -17,7 +17,7 @@ function getScoreboard(lols, darns, date) {
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
     var ratioCaption = "THE RATIO:";
-    var theRatio = parseFloat(lols)/parseFloat(darns);
+    var theRatio = (parseFloat(lols)/parseFloat(darns)).toFixed(4);
     var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
     var ratioSpaces = spaceCalc(scoreboardHead, ratioCaption, theRatio);
