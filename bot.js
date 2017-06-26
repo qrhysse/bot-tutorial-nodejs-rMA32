@@ -16,16 +16,21 @@ function getScoreboard(lols, darns, date) {
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
+    var ratioCaption = "THE RATIO:";
+    var theRatio = (parseFloat(lols)/parseFloat(darns)).toFixed(4);
     var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
+    var ratioSpaces = spaceCalc(scoreboardHead, ratioCaption, theRatio);
+    var ratioLine = ratioCaption + ratioSpaces + theRatio;
     var lolLine = totalLols + lolspaces + lols;
     var darnLine = totalDarns + darnspaces + darns;
-    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since "+date+"---------";
+    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n" + ratioLine +  "\n\n---------Since "+date+"---------";
     console.log('Scoreboard is: ', scoreboard);
     return scoreboard;
 }
 
 function scoreboard(forParse, resp) {
+  // Comment below line for debugging !!!!!!!!!!!!!!!!!!!!
   if( forParse.group_id !== '23073839' ) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
@@ -34,13 +39,15 @@ function scoreboard(forParse, resp) {
     var jsonObj, lolCount, darnCount, currentDate, returnval = 0;
     var count = 0;
 
-    request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+    console.log("Requesting scoreboard...");
+    request('http://api.myjson.com/bins/4xupz', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var jsonObj = JSON.parse(body);
         var lolCount = jsonObj.lols;
         var darnCount = jsonObj.darns;
         var currentDate = jsonObj.date;
         if( forParse.text && botRegexScoreboard.test(forParse.text)) {
+          console.log("Recognized scoreboard command.");
           returnval = getScoreboard(lolCount, darnCount, currentDate);
           resp.res.writeHead(200);
           postMessage(returnval, false);
@@ -54,7 +61,7 @@ function scoreboard(forParse, resp) {
             count = (forParse.text.match(darnTrigger) || []).length;
             darnCount += count;
           }
-          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
+          request({ url: 'http://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
           returnval = 0;
         }
       } else {
