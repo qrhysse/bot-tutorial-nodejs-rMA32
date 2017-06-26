@@ -30,7 +30,8 @@ function getScoreboard(lols, darns, date) {
 }
 
 function scoreboard(forParse, resp) {
-  if( forParse.group_id !== '23073839' ) {
+  // Comment below line for debugging !!!!!!!!!!!!!!!!!!!!
+  // if( forParse.group_id !== '23073839' ) {
     var lolTrigger = /(lol|\blol)/ig;
     var darnTrigger = /(darn|\bdarn)/ig;
     var botRegexScoreboard = /\/scoreboard/i;
@@ -67,7 +68,7 @@ function scoreboard(forParse, resp) {
         returnval = 0;
       }
     });
-  }
+  //}
 }
 
 function respond() {
