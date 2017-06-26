@@ -38,6 +38,7 @@ function scoreboard(forParse, resp) {
     var jsonObj, lolCount, darnCount, currentDate, returnval = 0;
     var count = 0;
 
+    console.log("Requesting scoreboard...);
     request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var jsonObj = JSON.parse(body);
@@ -45,6 +46,7 @@ function scoreboard(forParse, resp) {
         var darnCount = jsonObj.darns;
         var currentDate = jsonObj.date;
         if( forParse.text && botRegexScoreboard.test(forParse.text)) {
+          console.log("Recognized scoreboard command.");
           returnval = getScoreboard(lolCount, darnCount, currentDate);
           resp.res.writeHead(200);
           postMessage(returnval, false);
