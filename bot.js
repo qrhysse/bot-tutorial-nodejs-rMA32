@@ -39,7 +39,7 @@ function scoreboard(forParse, resp) {
     var count = 0;
 
     console.log("Requesting scoreboard...");
-    request('https://api.myjson.com/bins/4xupz', function (error, response, body) {
+    request('http://api.myjson.com/bins/4xupz', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var jsonObj = JSON.parse(body);
         var lolCount = jsonObj.lols;
