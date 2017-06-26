@@ -16,11 +16,15 @@ function getScoreboard(lols, darns, date) {
     var scoreboardHead = "-------------SCOREBOARD-------------";
     var totalLols = "TOTAL LOLS:";
     var totalDarns = "TOTAL DARNS:";
+    var ratioCaption = "THE RATIO:";
+    var theRatio = float(lols)/float(darns);
     var lolspaces = spaceCalc(scoreboardHead, totalLols, lols);
     var darnspaces = spaceCalc(scoreboardHead, totalDarns, darns);
+    var ratioSpaces = spaceCalc(scoreboardHead, ratioCaption, theRatio);
+    var ratioLine = ratioCaption + ratioSpaces + theRatio;
     var lolLine = totalLols + lolspaces + lols;
     var darnLine = totalDarns + darnspaces + darns;
-    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n\n---------Since "+date+"---------";
+    var scoreboard = "-------------SCOREBOARD-------------\n\n" + lolLine + "\n" + darnLine + "\n" + ratioLine +  "\n\n---------Since "+date+"---------";
     console.log('Scoreboard is: ', scoreboard);
     return scoreboard;
 }
