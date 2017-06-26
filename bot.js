@@ -60,7 +60,7 @@ function scoreboard(forParse, resp) {
             count = (forParse.text.match(darnTrigger) || []).length;
             darnCount += count;
           }
-          request({ url: 'https://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
+          request({ url: 'http://api.myjson.com/bins/4xupz', method: 'PUT', json: {lols: lolCount, darns: darnCount, date: currentDate}});
           returnval = 0;
         }
       } else {
