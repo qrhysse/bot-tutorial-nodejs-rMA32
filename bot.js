@@ -77,6 +77,7 @@ function respond() {
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
   var botRegexSkeleton= /(^skeletons?$|\bskeletons?[^a-z]?)/i;
   var botRegexChina = /(^china$|\bchina[^a-z]?)/i;
+  var botRegexBolas = /(^bolas$|\bbolas[^a-z]?)/i;
   var sbPost;
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
@@ -227,6 +228,11 @@ function respond() {
     if(request.text && botRegexGirl.test(request.text)) {
       this.res.writeHead(200);
       postMessage("Was she hot?", false);
+      this.res.end();
+    }
+    if(request.text && botRegexBolas.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("May His return come quickly and may we be found worthy.", false);
       this.res.end();
     }
   } else {
