@@ -78,6 +78,7 @@ function respond() {
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
+  var botRegexTogedgar = /(^together$|\btogether[^a-z]?)/ig;
   var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
@@ -138,6 +139,14 @@ function respond() {
     if(request.text && botRegexWee.test(request.text)) {
       this.res.writeHead(200);
       postMessage("Goddamn Weeaboo", false);
+      this.res.end();
+    }
+    
+    if( request.text && botRegexTogedgar.test(request.text)) {
+      this.res.writeHead(200);
+      response = "Or should I say, ";
+      response += request.text.replace(botRegexTogedgar, 'tog-Edgar');
+      postMessage(response, false);
       this.res.end();
     }
 
