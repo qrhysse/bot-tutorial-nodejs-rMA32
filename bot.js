@@ -79,7 +79,7 @@ function respond() {
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
   var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
-  var botRegexTogedgar = /(^together$|\btogether[^a-z]?)/ig;
+  var botRegexTogedgar = /(^together$|together[^\s]?)/ig;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
