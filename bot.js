@@ -78,8 +78,8 @@ function respond() {
   var botRegexsts = /JokeyBot, status(!|.)?/i;
   var botRegexBio = /from a biological/i;
   var botRegexWee = /(-|\s[^a-z]?)kun/i;
-  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
   var botRegexTogedgar = /(^together$|together[^\s]?)/ig;
+  var botRegexDad = /(^dad$|\bdad[^a-z]?)/i;
   var botRegexRip = /(^r\.?i\.?p\.?$|\sr\.?i\.?p\.?[^a-z]?)/i;
   var botRegexAlex = /(^actually$|\bactually[^a-z]?)/i;
   var botRegexSandwich = /(^sandwich$|\bsandwich[^a-z]?)/i;
@@ -89,6 +89,7 @@ function respond() {
   var sbPost;
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
+  var morningsTrigger = /(^morning$|\bmorning[^a-z]?)/i;
   var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   //var botRegexDadJoke = /\bi'?m\s+/i;
@@ -136,9 +137,23 @@ function respond() {
       this.res.end();
     }
     
+    if(request.text && morningsTrigger.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Mornings are my favorite. At dawn, when the sun peaks above the horizon, that's the best time, the only time, to listen to it ring.", false);
+      this.res.end();
+    }
+    
     if(request.text && botRegexWee.test(request.text)) {
       this.res.writeHead(200);
       postMessage("Goddamn Weeaboo", false);
+      this.res.end();
+    }
+    
+    if( request.text && botRegexTogedgar.test(request.text)) {
+      this.res.writeHead(200);
+      response = "Or should I say, ";
+      response += request.text.replace(botRegexTogedgar, 'tog-Edgar');
+      postMessage(response, false);
       this.res.end();
     }
 
@@ -183,14 +198,6 @@ function respond() {
     if( request.text && botRegexAlex.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://s32.postimg.org/ld1h4212t/alex.png", false);
-      this.res.end();
-    }
-    
-    if( request.text && botRegexTogedgar.test(request.text)) {
-      this.res.writeHead(200);
-      response = "Or should I say, ";
-      response += request.text.replace(botRegexTogedgar, 'tog-Edgar');
-      postMessage(response, false);
       this.res.end();
     }
     
