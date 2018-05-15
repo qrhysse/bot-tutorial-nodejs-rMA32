@@ -89,6 +89,7 @@ function respond() {
   var sbPost;
   var lolTrigger = /(lol|\blol)/ig;
   var darnTrigger = /(darn|\bdarn)/ig;
+  var morningsTrigger = /(^morning$|\bmorning[^a-z]?)/i;
   var botRegexScoreboard = /\/scoreboard/i;
   //var botRegexDadJoke = /(\bI'?\s*a?m\b)/g; // I am, I'm, Im, or Iam
   //var botRegexDadJoke = /\bi'?m\s+/i;
@@ -133,6 +134,12 @@ function respond() {
     if(request.text && botRegexNice.test(request.text)) {
       this.res.writeHead(200);
       postMessage("https://i.groupme.com/200x200.gif.6d4b4552111c4c599d3add51dd98a1e6.large", false);
+      this.res.end();
+    }
+    
+    if(request.text && morningsTrigger.test(request.text)) {
+      this.res.writeHead(200);
+      postMessage("Mornings are my favorite. At dawn, when the sun peaks above the horizon, that's the best time, the only time, to listen to it ring.", false);
       this.res.end();
     }
     
